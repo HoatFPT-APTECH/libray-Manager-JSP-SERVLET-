@@ -35,12 +35,7 @@ public class ManageCategory extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		if (request.getSession().getAttribute("User") == null) {
-			String errorString = "Bạn cần đăng nhập trước";
-			request.setAttribute("errorString", errorString);
-			RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/login.jsp");
-			dispatcher.forward(request, response);
-		} else {
+		
 			String errorString = null;
 			ArrayList<Category> list = null;
 
@@ -58,9 +53,10 @@ public class ManageCategory extends HttpServlet {
 			request.setAttribute("categoryList", list);
 			request.getSession().setAttribute("Check", "ManageCategory");
 			// Forward sang /WEB-INF/views/productListView.jsp
-			RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/manage_category.jsp");
+                        request.setAttribute("page", "manager_category.jsp");
+			RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/index.jsp");
 			dispatcher.forward(request, response);
-		}
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

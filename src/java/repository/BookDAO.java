@@ -15,7 +15,7 @@ import com.mysql.jdbc.Statement;
 import model.Book;
 import model.Category;
 import service.CategoryBO;
-import service.ReaderBO;
+
 
 
 
@@ -24,7 +24,7 @@ public class BookDAO {
 	Statement st = null;
 	PreparedStatement preSt = null;
 	   CategoryBO categoryBO = new CategoryBO();
-	   ReaderBO readerBO= new ReaderBO();
+	   
 
 	public Book findBook(String id) throws SQLException, ClassNotFoundException {
 		if (conn == null)
@@ -173,38 +173,6 @@ public class BookDAO {
 		result = pstm.executeUpdate();
 		return result;
 	}
-	public int deleteAllBook() throws ClassNotFoundException, SQLException {
-		int result = 0;
-		if (conn == null)
-			conn = ConnectDatabase.getMySQLConnection();
-		readerBO.deleteAllReader();
-		String sql = "Delete From Book";
-		PreparedStatement pstm = (PreparedStatement) conn.prepareStatement(sql);
-		result = pstm.executeUpdate();
-		return result;
-	}
-	public int deleteBook(String id) throws ClassNotFoundException, SQLException {
-		int result = 0;
-		if (conn == null)
-			conn = ConnectDatabase.getMySQLConnection();
-
-		readerBO.deleteBookReader(id);
-		String sql = "Delete From Book where id= ?";
-		PreparedStatement pstm = (PreparedStatement) conn.prepareStatement(sql);
-		pstm.setString(1, id);
-		result = pstm.executeUpdate();
-		return result;
-	}
-	public int deleteBookCategory(String category_id) throws ClassNotFoundException, SQLException {
-		int result = 0;
-		if (conn == null)
-			conn = ConnectDatabase.getMySQLConnection();
-		readerBO.deleteBookReaderCategory(category_id);
-//		String sql = "DELETE  Reader, Book FROM Reader INNER JOIN Book ON Reader.book_id = Book.id WHERE Book.category_id=?;";
-		String sql = "Delete From Book where category_id= ?";
-		PreparedStatement pstm = (PreparedStatement) conn.prepareStatement(sql);
-		pstm.setString(1, category_id);
-		result = pstm.executeUpdate();
-		return result;
-	}
+	
+	
 }

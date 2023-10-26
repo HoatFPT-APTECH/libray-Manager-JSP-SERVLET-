@@ -49,12 +49,7 @@ public class AddBook extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		if (request.getSession().getAttribute("User") == null) {
-			String errorString = "Bạn cần đăng nhập trước";
-			request.setAttribute("errorString", errorString);
-			RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/login.jsp");
-			dispatcher.forward(request, response);
-		} else {
+		
 
 			String errorString = null;
 			ArrayList<Category> list = null;
@@ -72,9 +67,10 @@ public class AddBook extends HttpServlet {
 			request.setAttribute("errorString", errorString);
 			request.setAttribute("categoryList", list);
 			request.getSession().setAttribute("Check", "AddBook");
-			RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/add_book.jsp");
+                        request.setAttribute("page","add_book.jsp");
+			RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/index.jsp");
 			dispatcher.forward(request, response);
-		}
+		
 	}
 
 	/**

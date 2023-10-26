@@ -5,7 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
+
 import model.Book;
 import repository.BookDAO;
 
@@ -34,22 +34,7 @@ public class BookBO {
 		return BookDAO.getSearchBook(name_search);
 	}
 
-	public boolean deleteBook(String id) throws ClassNotFoundException, SQLException {
-		int result = BookDAO.deleteBook(id);
-		if (result != 0)
-			return true;
-		return false;
-	}
-	public int deleteBookCategory(String category_id) throws ClassNotFoundException, SQLException {
-		return BookDAO.deleteBookCategory(category_id);
-	}
-	public boolean deleteAllBook() throws ClassNotFoundException, SQLException {
-		int result = BookDAO.deleteAllBook();
-		if (result != 0)
-			return true;
-		return false;
-	}
-
+	
 	public int updateBook(Book Book) throws ClassNotFoundException, SQLException {
 		return BookDAO.updateBook(Book);
 	}
