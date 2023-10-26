@@ -37,12 +37,7 @@ public class SearchBook extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		if (request.getSession().getAttribute("User") == null) {
-			String errorString = "Bạn cần đăng nhập trước";
-			request.setAttribute("errorString", errorString);
-			RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/login.jsp");
-			dispatcher.forward(request, response);
-		} else {
+	
 			request.setCharacterEncoding("UTF-8");
 			String data_search = request.getParameter("data_search");
 			String errorString = null;
@@ -63,9 +58,10 @@ public class SearchBook extends HttpServlet {
 			request.setAttribute("bookList", list);
 
 			// Forward sang /WEB-INF/views/productListView.jsp
-			RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/manage_book.jsp");
+                        request.setAttribute("page", "manager_book.jsp");
+			RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/index.jsp");
 			dispatcher.forward(request, response);
-		}
+		
 	}
 
 	/**

@@ -3,11 +3,24 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/libray-Manager-JSP-SERVLET-/QuanLyThuVien/src/java/controller/AddBook.java</file>
-            <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/libray-Manager-JSP-SERVLET-/QuanLyThuVien/src/java/controller/UserManual.java</file>
-            <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/libray-Manager-JSP-SERVLET-/QuanLyThuVien/web/manage_reader.jsp</file>
-            <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/libray-Manager-JSP-SERVLET-/QuanLyThuVien/src/java/controller/Login.java</file>
-            <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/libray-Manager-JSP-SERVLET-/QuanLyThuVien/web/login.jsp</file>
+            <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/src/java/controller/EditBook.java</file>
+            <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/web/pages/manager_category.jsp</file>
+            <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/src/java/service/BookBO.java</file>
+            <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/src/java/controller/Dashboard.java</file>
+            <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/web/manage_reader.jsp</file>
+            <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/src/java/repository/CategoryDAO.java</file>
+            <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/src/java/controller/SearchBook.java</file>
+            <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/web/pages/edit_category.jsp</file>
+            <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/src/java/controller/ManageBook.java</file>
+            <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/src/java/controller/DeleteBook.java</file>
+            <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/web/pages/manager_reader.jsp</file>
+            <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/src/java/repository/BookDAO.java</file>
+            <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/src/java/controller/ManageCategory.java</file>
+            <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/web/components/sidebar.jsp</file>
+            <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/web/pages/dashboard.jsp</file>
+            <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/web/pages/edit_book.jsp</file>
+            <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/web/pages/manager_book.jsp</file>
+            <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/src/java/controller/EditCategory.java</file>
         </group>
     </open-files>
 </project-private>

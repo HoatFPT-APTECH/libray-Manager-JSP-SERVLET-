@@ -45,12 +45,7 @@ public class EditBook extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		if (request.getSession().getAttribute("User") == null) {
-			String errorString = "Bạn cần đăng nhập trước";
-			request.setAttribute("errorString", errorString);
-			RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/login.jsp");
-			dispatcher.forward(request, response);
-		} else {
+		
 			String id = (String) request.getParameter("id");
 
 			Category category = null;
@@ -74,9 +69,10 @@ public class EditBook extends HttpServlet {
 			}
 			request.setAttribute("book", book);
 			request.setAttribute("categoryList", list);
-			RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/edit_book.jsp");
+                        request.setAttribute("page", "edit_book.jsp");
+			RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/index.jsp");
 			dispatcher.forward(request, response);
-		}
+		
 	}
 
 	/**

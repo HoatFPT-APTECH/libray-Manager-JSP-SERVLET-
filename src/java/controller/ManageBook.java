@@ -37,12 +37,7 @@ public class ManageBook extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		if (request.getSession().getAttribute("User") == null) {
-			String errorString = "Bạn cần đăng nhập trước";
-			request.setAttribute("errorString", errorString);
-			RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/login.jsp");
-			dispatcher.forward(request, response);
-		} else {
+		
 			String errorString = null;
 			ArrayList<Book> list = null;
 			try {
@@ -59,9 +54,10 @@ public class ManageBook extends HttpServlet {
 			request.setAttribute("bookList", list);
 			request.getSession().setAttribute("Check", "ManageBook");
 			// Forward sang /WEB-INF/views/productListView.jsp
-			RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/manage_book.jsp");
+                        request.setAttribute("page", "manager_book.jsp");
+			RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/index.jsp");
 			dispatcher.forward(request, response);
-		}
+		
 	}
 
 	/**

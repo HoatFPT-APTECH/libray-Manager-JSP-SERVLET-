@@ -37,12 +37,7 @@ public class EditCategory extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		if (request.getSession().getAttribute("User") == null) {
-			String errorString = "Bạn cần đăng nhập trước";
-			request.setAttribute("errorString", errorString);
-			RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/login.jsp");
-			dispatcher.forward(request, response);
-		} else {
+		
 			String id = (String) request.getParameter("id");
 
 			Category category = null;
@@ -70,10 +65,10 @@ public class EditCategory extends HttpServlet {
 			// Lưu thông tin vào request attribute trước khi forward sang views.
 			request.setAttribute("errorString", errorString);
 			request.setAttribute("category", category);
-
-			RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/edit_category.jsp");
+                         request.setAttribute("page", "edit_category.jsp");
+			RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/index.jsp");
 			dispatcher.forward(request, response);
-		}
+		
 	}
 
 	/**
@@ -108,8 +103,7 @@ public class EditCategory extends HttpServlet {
 		request.setAttribute("category", category);
 		// Nếu có lỗi forward sang trang edit.
 		if (errorString != null) {
-			RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/edit_category.jsp");
-			dispatcher.forward(request, response);
+			response.sendRedirect(request.getContextPath() + "/ManageCategory");
 		}
 		// Nếu mọi thứ tốt đẹp.
 		// Redirect sang trang danh sách sản phẩm.

@@ -19,7 +19,8 @@
                   <section class="content" >
                       
                    
-                          <p> Include page ở đây </p>
+                          <p> Include page ở đây  </p>
+                          <jsp:include page="./pages/${page}"/>
                   
                   </section>
 
