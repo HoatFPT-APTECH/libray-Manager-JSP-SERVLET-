@@ -4,6 +4,8 @@
     Author     : hoatd
 --%>
 
+<%@page import="java.util.ArrayList"%>
+<%@page import="model.Category"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!-- Content Header (Page header) -->
 	<div class="content-header">
@@ -46,13 +48,16 @@
 										placeholder="Nhập tên sách">
 								</div>
 								<div class="form-group">
-									<label>Thể loại</label> <select name="category" id="category"
-										class="form-control" required>
+									<label>Thể loại</label> 
 										<!-- <option value="">Chọn 1 thể loại</option> -->
-										<c:forEach items="${categoryList}" var="category">
-											<option value="${Integer.toString(category.getId())}">${category.getName()}</option>
-										</c:forEach>
-									</select>
+                                                                                <select name="category">
+                                                                                     <%for(Category category: (ArrayList<Category>) request.getAttribute("categoryList") ){%>
+                                                                                <option value="<%=Integer.toString(category.getId())%>"><%=category.getName()%></option>
+                                                                                <%}%>
+                                                                                </select>
+                                                                               
+										
+									
 								</div>
 								<div class="form-group">
 									<label>Số lượng</label> <input type="number"

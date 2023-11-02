@@ -102,7 +102,7 @@
                                                 <p>Thêm người mượn sách</p>
                                             </a></li>
                                         <li class="nav-item"><a
-                                                href="${pageContext.request.contextPath}/ManageReader"
+                                                href="${pageContext.request.contextPath}/ManageBorrowRequest"
                                             class="nav-link">
                                                 <i class="far fa-circle nav-icon"></i>
                                                 <p>Danh sách đang mượn sách</p>
