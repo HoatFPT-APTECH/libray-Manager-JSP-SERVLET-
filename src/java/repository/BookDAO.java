@@ -26,13 +26,13 @@ public class BookDAO {
 	   CategoryBO categoryBO = new CategoryBO();
 	   
 
-	public Book findBook(String id) throws SQLException, ClassNotFoundException {
+	public Book findBook(int id) throws SQLException, ClassNotFoundException {
 		if (conn == null)
 			conn = ConnectDatabase.getMySQLConnection();
 		String sql = "Select * from Book where id=?";
-
+        
 		PreparedStatement pstm = (PreparedStatement) conn.prepareStatement(sql);
-		pstm.setString(1, id);
+		pstm.setInt(1, id);
 
 		ResultSet rs = pstm.executeQuery();
 
@@ -108,7 +108,7 @@ public class BookDAO {
 			String amount = rs.getString("amount");
 			String image = rs.getString("image");
 			Book book = new Book();
-			book.setId(id);
+			book.setId(Integer.parseInt(id));
 			book.setName(name);
 			book.setCategory(category);
 			book.setAmount(amount);
@@ -145,7 +145,7 @@ public class BookDAO {
 			String amount = rs.getString("amount");
 			String image = rs.getString("image");
 			Book book = new Book();
-			book.setId(id);
+			book.setId(Integer.parseInt(id));
 			book.setName(name);
 			book.setCategory(category);
 			book.setAmount(amount);
@@ -169,7 +169,7 @@ public class BookDAO {
 		pstm.setString(2, Integer.toString(book.getCategory().getId()));
 		pstm.setString(3, book.getAmount());
 		pstm.setString(4, book.getImage());
-		pstm.setString(5, book.getId());
+		pstm.setString(5,String.valueOf(book.getId()));
 		result = pstm.executeUpdate();
 		return result;
 	}

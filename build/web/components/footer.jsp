@@ -50,3 +50,4 @@
 	<script src="<%= request.getContextPath() %>/Resources/js/pages/dashboard.js"></script>
 	<!-- AdminLTE for demo purposes -->
 	<script src="<%= request.getContextPath() %>/Resources/js/demo.js"></script>
+        	<script src="<%= request.getContextPath() %>/Resources/js/general.js"></script>

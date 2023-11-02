@@ -14,7 +14,7 @@ import repository.BookDAO;
 public class BookBO {
 	BookDAO BookDAO = new BookDAO();
 
-	public Book findBook(String id) throws ClassNotFoundException, SQLException {
+	public Book findBook(int id) throws ClassNotFoundException, SQLException {
 
 		return BookDAO.findBook(id);
 	}

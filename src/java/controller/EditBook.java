@@ -54,7 +54,7 @@ public class EditBook extends HttpServlet {
 			Book book = new Book();
 			ArrayList<Category> list = null;
 			try {
-				book = bookBO.findBook(id);
+				book = bookBO.findBook(Integer.parseInt(id));
 				list = categoryBO.listCategory();
 
 			} catch (SQLException e) {
@@ -107,7 +107,7 @@ public class EditBook extends HttpServlet {
 			e1.printStackTrace();
 		}
 		Book book = new Book();
-		book.setId(id);
+		book.setId(Integer.parseInt(id));
 		book.setName(name);
 		book.setCategory(category);
 		book.setAmount(count);
