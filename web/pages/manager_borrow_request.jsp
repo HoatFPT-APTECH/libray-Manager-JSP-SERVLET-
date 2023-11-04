@@ -102,7 +102,7 @@
                                                 <button type="button" class="btn btn-warning ml-3"
                                                         onclick="update(this)"
                                                           value="<%= e.id %>"
-                                                href="<%=request.getContextPath() %>/EditBorrowRequest"
+                                                href="<%=request.getContextPath() %>/AddBorrowTracking"
                                                 >Trả sách</button> <br>
                                         <button type="button " class="btn btn-danger ml-3"
                                                             onclick="remove(this)"

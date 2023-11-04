@@ -13,7 +13,7 @@ import java.util.Date;
  */
 public class BorrowRequest {
     public int id, reader_id,book_id, deleted;
-    public Date due_date;
+    public Date due_date, updated_at;
     public Reader reader=null;
     public Book book=null;
 
@@ -26,6 +26,15 @@ public class BorrowRequest {
         this.book_id = book_id;
         this.deleted = deleted;
         this.due_date = due_date;
+    }
+
+    public BorrowRequest(int id, int reader_id, int book_id, int deleted, Date due_date, Date updated_at) {
+        this.id = id;
+        this.reader_id = reader_id;
+        this.book_id = book_id;
+        this.deleted = deleted;
+        this.due_date = due_date;
+        this.updated_at = updated_at;
     }
     
 }

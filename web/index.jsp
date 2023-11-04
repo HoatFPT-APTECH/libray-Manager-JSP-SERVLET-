@@ -8,19 +8,19 @@
 <!DOCTYPE html>
 <html>
     <head>
-         <jsp:include page="./components/head.jsp"/>
+         <jsp:include page="/components/head.jsp"/>
     </head>
     <body class="hold-transition sidebar-mini layout-fixed">
         <div class="wrapper">
-             <jsp:include page="./components/header.jsp"/>
+             <jsp:include page="/components/header.jsp"/>
             <!-- /.navbar -->
-              <jsp:include page="./components/sidebar.jsp"/>
+              <jsp:include page="/components/sidebar.jsp"/>
               <div class="content-wrapper">
                   <section class="content" >
                       
                    
-                          <p> Include page ở đây  </p>
-                          <jsp:include page="./pages/${page}"/>
+        
+                          <jsp:include page="/pages/${page}"/>
                   
                   </section>
 

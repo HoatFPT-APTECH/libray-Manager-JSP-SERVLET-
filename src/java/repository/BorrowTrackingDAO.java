@@ -35,14 +35,16 @@ public class BorrowTrackingDAO {
             int returnStatus = rs.getInt("return_status");
             int deleted = rs.getInt("deleted");
             Date returnDate = rs.getDate("return_date");
-
+            Date updated_at = rs.getDate("updated_at");
+             double fine_amound=rs.getDouble("fine_amound");
             BorrowTracking borrowTracking = new BorrowTracking();
             borrowTracking.id = id;
             borrowTracking.request_id = requestId;
             borrowTracking.return_status = returnStatus;
             borrowTracking.deleted = deleted;
             borrowTracking.return_date = returnDate;
-
+                borrowTracking.fine_amound=fine_amound;
+            borrowTracking.updated_at= updated_at;
             return borrowTracking;
         }
         return null;
@@ -57,12 +59,12 @@ public class BorrowTrackingDAO {
             e.printStackTrace();
         }
         int result = 0;
-        String insert = "INSERT INTO borrow_tracking (request_id, return_status, deleted, return_date) VALUES (?, ?, ?, ?)";
+        String insert = "INSERT INTO borrow_tracking (request_id,return_date, return_status,fine_amound) VALUES (?, ?,?, ?)";
         preSt = (PreparedStatement) conn.prepareStatement(insert);
         preSt.setInt(1, borrowTracking.request_id);
-        preSt.setInt(2, borrowTracking.return_status);
-        preSt.setInt(3, borrowTracking.deleted);
-        preSt.setDate(4, new java.sql.Date(borrowTracking.return_date.getTime()));
+        preSt.setDate(2, (java.sql.Date) borrowTracking.return_date);
+        preSt.setInt(3, borrowTracking.return_status);
+        preSt.setDouble(4, borrowTracking.fine_amound);
         result = preSt.executeUpdate();
         System.out.println("Result: " + result);
         return result;
@@ -81,15 +83,17 @@ public class BorrowTrackingDAO {
             int requestId = rs.getInt("request_id");
             int returnStatus = rs.getInt("return_status");
             int deleted = rs.getInt("deleted");
+            double fine_amound=rs.getDouble("fine_amound");
             Date returnDate = rs.getDate("return_date");
-
+             Date updated_at= rs.getDate("updated_at");
             BorrowTracking borrowTracking = new BorrowTracking();
             borrowTracking.id = id;
             borrowTracking.request_id = requestId;
             borrowTracking.return_status = returnStatus;
             borrowTracking.deleted = deleted;
+            borrowTracking.fine_amound=fine_amound;
             borrowTracking.return_date = returnDate;
-
+            borrowTracking.updated_at= updated_at;
             list.add(borrowTracking);
         }
         return list;
@@ -99,12 +103,13 @@ public class BorrowTrackingDAO {
         if (conn == null)
             conn = ConnectDatabase.getMySQLConnection();
         int result = 0;
-        String sql = "UPDATE borrow_tracking SET request_id=?, return_status=?, deleted=?, return_date=? WHERE id=?";
+        String sql = "UPDATE borrow_tracking SET request_id=?, return_status=?,fine_amound=?, return_date=? WHERE id=?";
         PreparedStatement pstm = (PreparedStatement) conn.prepareStatement(sql);
     
         pstm.setInt(1, borrowTracking.request_id);
         pstm.setInt(2, borrowTracking.return_status);
-        pstm.setInt(3, borrowTracking.deleted);
+        pstm.setDouble(3, borrowTracking.fine_amound);
+     
         pstm.setDate(4, new java.sql.Date(borrowTracking.return_date.getTime()));
         pstm.setInt(5, borrowTracking.id);
         
@@ -116,7 +121,7 @@ public class BorrowTrackingDAO {
         if (conn == null)
             conn = ConnectDatabase.getMySQLConnection();
         int result = 0;
-        String sql = "DELETE FROM borrow_tracking WHERE id=?";
+        String sql = "update borrow_tracking set deleted=1 WHERE id=?";
         PreparedStatement pstm = (PreparedStatement) conn.prepareStatement(sql);
         pstm.setInt(1, id);
         result = pstm.executeUpdate();

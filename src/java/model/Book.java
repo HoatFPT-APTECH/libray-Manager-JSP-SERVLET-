@@ -10,6 +10,7 @@ public class Book {
     private String amount;
     private Category Category;
     private String day;
+    public double price;
 
     public void setId(int id) {
         this.id = id;
