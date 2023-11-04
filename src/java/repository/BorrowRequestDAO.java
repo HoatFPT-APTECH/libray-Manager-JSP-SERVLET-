@@ -39,13 +39,14 @@ public class BorrowRequestDAO {
             int bookId = rs.getInt("book_id");
             int deleted = rs.getInt("deleted");
             Date dueDate = rs.getDate("due_date");
-
+            Date updated_at= rs.getDate("updated_at");
             BorrowRequest borrowRequest = new BorrowRequest();
             borrowRequest.id = id;
             borrowRequest.reader_id = readerId;
             borrowRequest.book_id = bookId;
             borrowRequest.deleted = deleted;
             borrowRequest.due_date = dueDate;
+            borrowRequest.updated_at=updated_at;
 
             return borrowRequest;
         }
@@ -88,13 +89,14 @@ public class BorrowRequestDAO {
             int bookId = rs.getInt("book_id");
             int deleted = rs.getInt("deleted");
             Date dueDate = rs.getDate("due_date");
-            
+            Date updated_at= rs.getDate("updated_at");
             BorrowRequest borrowRequest = new BorrowRequest();
             borrowRequest.id = id;
             borrowRequest.reader_id = readerId;
             borrowRequest.book_id = bookId;
             borrowRequest.deleted = deleted;
             borrowRequest.due_date = dueDate;
+            borrowRequest.updated_at=updated_at;
             try {
                borrowRequest.book= this.bookRepository.findBook(bookId);
                borrowRequest.reader= this.readerRepository.findReader(readerId);

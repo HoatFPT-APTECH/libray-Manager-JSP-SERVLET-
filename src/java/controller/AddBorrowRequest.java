@@ -71,6 +71,7 @@ public class AddBorrowRequest extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+            
             request.setAttribute("page", "add_borrow_request.jsp");
             request.getRequestDispatcher("./index.jsp").forward(request, response);
     }

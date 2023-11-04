@@ -51,6 +51,7 @@ public class BookDAO {
 			}
 			String amount = rs.getString("amount");
 			String image = rs.getString("image");
+                        double price= rs.getDouble("price");
 			Book book = new Book();
 			book.setId(id);
 			book.setName(name);
@@ -58,6 +59,7 @@ public class BookDAO {
 			book.setAmount(amount);
 			book.setImage(image);
 			book.setDay(strDate);
+                        book.price=price;
 			return book;
 		}
 		return null;
