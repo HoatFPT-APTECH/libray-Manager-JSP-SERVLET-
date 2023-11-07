@@ -75,7 +75,7 @@
                                 <figcaption>
                                     <a href="Resources/img/products/<%=book.getImage()%>"
                                        style="font-size: 14px;" target="_blank">Xem chi tiết</a>
-                                </figcaption>
+                                </figcaption></td>
                                 <td><a
                                         href="${pageContext.request.contextPath}/EditBook?id=<%= book.getId() %> "
                                         class="btn btn-sm btn-info">Chỉnh sửa</a></td>
