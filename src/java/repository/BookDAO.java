@@ -93,7 +93,7 @@ public class BookDAO {
 		if (conn == null)
 			conn = ConnectDatabase.getMySQLConnection();
 		ArrayList<Book> list = new ArrayList<Book>();
-		String sql = "Select * from Book ORDER BY create_day DESC";
+		String sql = "Select * from Book where deleted=0 ORDER BY create_day DESC";
 		PreparedStatement pstm = (PreparedStatement) conn.prepareStatement(sql);
 		ResultSet rs = pstm.executeQuery();
 
@@ -186,7 +186,7 @@ public int deleteBook(int id) throws ClassNotFoundException, SQLException {
                 if (conn == null)
                     conn = ConnectDatabase.getMySQLConnection();
                 try {
-                    String delete = "DELETE FROM Book WHERE id = ?";
+                    String delete = "update Book set deleted=1 where id= ?";
                     preSt = (PreparedStatement) conn.prepareStatement(delete);
                     preSt.setInt(1, id);
                     result = preSt.executeUpdate();

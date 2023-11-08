@@ -57,7 +57,7 @@ public class CategoryDAO {
 		if (conn == null)
 			conn = ConnectDatabase.getMySQLConnection();
 		ArrayList<Category> list = new ArrayList<Category>();
-		String sql = "Select * from Category";
+		String sql = "Select * from Category where deleted=0";
 		PreparedStatement pstm = (PreparedStatement) conn.prepareStatement(sql);
 		ResultSet rs = pstm.executeQuery();
 		while (rs.next()) {

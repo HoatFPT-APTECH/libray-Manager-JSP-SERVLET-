@@ -68,7 +68,7 @@ public class PublisherDAO {
 		if (conn == null)
 			conn = ConnectDatabase.getMySQLConnection();
 		ArrayList<Publisher> list = new ArrayList<Publisher>();
-		String sql = "Select * from Publisher";
+		String sql = "Select * from Publisher where deleted=0";
 		PreparedStatement pstm = (PreparedStatement) conn.prepareStatement(sql);
 		ResultSet rs = pstm.executeQuery();
 		while (rs.next()) {

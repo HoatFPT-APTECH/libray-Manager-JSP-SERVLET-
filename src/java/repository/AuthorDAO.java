@@ -69,7 +69,7 @@ public class AuthorDAO {
 		if (conn == null)
 			conn = ConnectDatabase.getMySQLConnection();
 		ArrayList<Author> list = new ArrayList<Author>();
-		String sql = "Select * from Author";
+		String sql = "Select * from Author where deleted=0";
 		PreparedStatement pstm = (PreparedStatement) conn.prepareStatement(sql);
 		ResultSet rs = pstm.executeQuery();
 		while (rs.next()) {
