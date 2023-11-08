@@ -97,18 +97,28 @@ public class EditBorrowRequest extends HttpServlet {
        
         String identityCard= request.getParameter("identity_card");
         Date due_date= Date.valueOf(request.getParameter("due_date"));
-        Reader reader= this.serviceReader.findReaderByIndentityCard(identityCard).get(0);
+        Reader reader= null;
         Book book=null;
         try {
+            reader=this.serviceReader.findReaderByIndentityCard(identityCard).get(0);
             book = this.serviceBook.findBook(book_id);
             
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(AddBorrowRequest.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
+        } catch (Exception ex) {
             Logger.getLogger(AddBorrowRequest.class.getName()).log(Level.SEVERE, null, ex);
         }
         if(reader==null || book==null){
-            response.sendRedirect(request.getContextPath()+"/EditBorrowRequest");
+       request.setAttribute("errorString", "Lỗi! Không tìm thấy Sách hoặc độc giả.");
+    
+        BorrowRequest model= this.serviceBorrowRequest.GetDetail(id);
+         reader=this.serviceReader.GetDetail(model.reader_id);
+        request.setAttribute("borrowRequest", model);
+        request.setAttribute("reader", reader);
+        request.setAttribute("page", "edit_borrow_request.jsp");
+        
+           request.getRequestDispatcher("./index.jsp").forward(request, response);
+            request.getRequestDispatcher("./index.jsp").forward(request, response);
         }else{
             BorrowRequest model= this.serviceBorrowRequest.GetDetail(id) ;
             model.due_date=due_date;
