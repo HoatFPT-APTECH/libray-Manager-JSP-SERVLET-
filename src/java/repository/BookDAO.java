@@ -12,8 +12,12 @@ import java.util.Date;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
 import com.mysql.jdbc.Statement;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
 import model.Book;
 import model.Category;
+import static repository.ConnectDatabase.conn;
+import service.BookBO;
 import service.CategoryBO;
 
 
@@ -175,6 +179,22 @@ public class BookDAO {
 		result = pstm.executeUpdate();
 		return result;
 	}
-	
-	
+
+public int deleteBook(int id) throws ClassNotFoundException, SQLException {
+            
+                int result = 0;
+                if (conn == null)
+                    conn = ConnectDatabase.getMySQLConnection();
+                try {
+                    String delete = "DELETE FROM Book WHERE id = ?";
+                    preSt = (PreparedStatement) conn.prepareStatement(delete);
+                    preSt.setInt(1, id);
+                    result = preSt.executeUpdate();
+                    System.out.println("Deleted: " + result);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                return result;
+            }
+
 }

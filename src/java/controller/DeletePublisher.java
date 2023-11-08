@@ -1,5 +1,9 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package controller;
-
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -9,22 +13,20 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import service.BookBO;
-
-
-
+import service.PublisherBO;
 /**
- * Servlet implementation class DeleteCategory
+ *
+ * @author NguyenTienDat
  */
-@WebServlet("/DeleteBook")
-public class DeleteBook extends HttpServlet {
+@WebServlet("/DeletePublisher")
+public class DeletePublisher extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private BookBO bookBO = new BookBO();
+	private PublisherBO publisherBO = new PublisherBO();
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public DeleteBook() {
+	public DeletePublisher() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -37,12 +39,23 @@ public class DeleteBook extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String id = (String) request.getParameter("id");
-                try {
-                        bookBO.deleteBook(Integer.parseInt(id));
-                } catch (Exception e) {
-                    e.printStackTrace();
-            }
-		response.sendRedirect(request.getContextPath()+"/ManageBook");
+		boolean result;
+		try {
+			result = publisherBO.deletePublisher(id);
+			System.out.println("Ket qua"+result);
+			if (result == true) {
+				request.setAttribute("errorString", "Đã xóa thành công");
+			} else {
+				request.setAttribute("errorString", "Lỗi cơ sở dữ liệu");
+			}
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		//RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/ManagerPublisher");
+		//dispatcher.forward(request, response);
+		response.sendRedirect(request.getContextPath() + "/ManagerPublisher");
 	}
 
 	/**
@@ -54,4 +67,6 @@ public class DeleteBook extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
+
 }
+

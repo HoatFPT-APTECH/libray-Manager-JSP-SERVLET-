@@ -32,12 +32,7 @@
                       <jsp:include page="./components/footer.jsp"/> 
                      
                           <input type="hidden" id="errorString" value="${errorString}"/>;
-                          <script>
-                              var errStr= document.getElementById("errorString")
-                              var str=errStr.value;
-                              if(typeof str==="string" && str.length!==0)
-                              alert(str)
-                              </script>
+                        
                          
     </body>
 </html>

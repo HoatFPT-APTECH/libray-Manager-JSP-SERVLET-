@@ -4,10 +4,14 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
 
 
 import model.Book;
 import repository.BookDAO;
+import repository.ConnectDatabase;
+import static repository.ConnectDatabase.conn;
 
 
 
@@ -38,5 +42,9 @@ public class BookBO {
 	public int updateBook(Book Book) throws ClassNotFoundException, SQLException {
 		return BookDAO.updateBook(Book);
 	}
-
+   
+        
+public int deleteBook (int id) throws ClassNotFoundException, SQLException{
+                return BookDAO.deleteBook(id);
+        }
 }

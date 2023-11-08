@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package controller;
 
 import java.io.IOException;
@@ -9,22 +14,21 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import service.BookBO;
-
-
+import service.AuthorBO;
 
 /**
- * Servlet implementation class DeleteCategory
+ *
+ * @author NguyenTienDat
  */
-@WebServlet("/DeleteBook")
-public class DeleteBook extends HttpServlet {
+@WebServlet("/DeleteAuthor")
+public class DeleteAuthor extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private BookBO bookBO = new BookBO();
+	private AuthorBO authorBO = new AuthorBO();
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public DeleteBook() {
+	public DeleteAuthor() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -37,12 +41,23 @@ public class DeleteBook extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String id = (String) request.getParameter("id");
-                try {
-                        bookBO.deleteBook(Integer.parseInt(id));
-                } catch (Exception e) {
-                    e.printStackTrace();
-            }
-		response.sendRedirect(request.getContextPath()+"/ManageBook");
+		boolean result;
+		try {
+			result = authorBO.deleteAuthor(id);
+			System.out.println("Ket qua"+result);
+			if (result == true) {
+				request.setAttribute("errorString", "Đã xóa thành công");
+			} else {
+				request.setAttribute("errorString", "Lỗi cơ sở dữ liệu");
+			}
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+//		RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/ManageCategory");
+//		dispatcher.forward(request, response);
+		response.sendRedirect(request.getContextPath() + "/ManagerAuthor");
 	}
 
 	/**
@@ -54,4 +69,5 @@ public class DeleteBook extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
+
 }
