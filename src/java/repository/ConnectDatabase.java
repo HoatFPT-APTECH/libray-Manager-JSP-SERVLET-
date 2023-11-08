@@ -1,9 +1,10 @@
 package repository;
 
+import com.mysql.jdbc.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-import com.mysql.jdbc.Connection;
+
 
 public class ConnectDatabase {
 	public static Connection conn=null;

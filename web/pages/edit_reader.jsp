@@ -1,4 +1,22 @@
 <%-- 
+<<<<<<< HEAD
+    Document   : edit_reader
+    Created on : Nov 8, 2023, 10:43:32 AM
+    Author     : NguyenTienDat
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+    </head>
+    <body>
+        <h1>Hello World!</h1>
+    </body>
+</html>
+=======
     Document   : add_reader
     Created on : Nov 1, 2023, 3:50:02 PM
     Author     : hoatd
@@ -110,3 +128,4 @@ Reader reader= (Reader) request.getAttribute("reader");
     </div>
 </section>
 <!-- /.content -->
+>>>>>>> 71e38dc3f4ca4c5c6d7d4af824ec621adcec0d10

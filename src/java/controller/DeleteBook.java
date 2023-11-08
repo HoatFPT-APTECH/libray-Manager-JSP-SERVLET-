@@ -37,7 +37,11 @@ public class DeleteBook extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String id = (String) request.getParameter("id");
-
+                try {
+                        bookBO.deleteBook(Integer.parseInt(id));
+                } catch (Exception e) {
+                    e.printStackTrace();
+            }
 		response.sendRedirect(request.getContextPath()+"/ManageBook");
 	}
 
@@ -50,5 +54,4 @@ public class DeleteBook extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-
 }

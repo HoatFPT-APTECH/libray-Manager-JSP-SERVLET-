@@ -84,6 +84,19 @@
                                                 <i class="far fa-circle nav-icon"></i>
                                                 <p>Thể loại</p>
                                             </a></li>
+                                            <li class="nav-item"><a
+                                                href="${pageContext.request.contextPath}/ManagerAuthor"
+                                            class="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Tác giả</p>
+                                            </a></li>
+                                             <li class="nav-item"><a
+                                                href="${pageContext.request.contextPath}/ManagerPublisher"
+                                            class="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Nhà xuất bản</p>
+                                            </a></li>
+                                            
                                     </ul></li>
                                 <li
                                     class=" nav-item has-treeview "><a

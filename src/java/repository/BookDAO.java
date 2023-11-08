@@ -12,8 +12,12 @@ import java.util.Date;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
 import com.mysql.jdbc.Statement;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
 import model.Book;
 import model.Category;
+import static repository.ConnectDatabase.conn;
+import service.BookBO;
 import service.CategoryBO;
 
 
@@ -89,7 +93,7 @@ public class BookDAO {
 		if (conn == null)
 			conn = ConnectDatabase.getMySQLConnection();
 		ArrayList<Book> list = new ArrayList<Book>();
-		String sql = "Select * from Book ORDER BY create_day DESC";
+		String sql = "Select * from Book where deleted=0 ORDER BY create_day DESC";
 		PreparedStatement pstm = (PreparedStatement) conn.prepareStatement(sql);
 		ResultSet rs = pstm.executeQuery();
 
@@ -175,6 +179,22 @@ public class BookDAO {
 		result = pstm.executeUpdate();
 		return result;
 	}
-	
-	
+
+public int deleteBook(int id) throws ClassNotFoundException, SQLException {
+            
+                int result = 0;
+                if (conn == null)
+                    conn = ConnectDatabase.getMySQLConnection();
+                try {
+                    String delete = "update Book set deleted=1 where id= ?";
+                    preSt = (PreparedStatement) conn.prepareStatement(delete);
+                    preSt.setInt(1, id);
+                    result = preSt.executeUpdate();
+                    System.out.println("Deleted: " + result);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                return result;
+            }
+
 }

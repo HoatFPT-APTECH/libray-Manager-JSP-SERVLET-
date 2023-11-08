@@ -3,6 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
+            <file>file:/C:/Program%20Files/NetBeans-18/NetBeansProjects/libray-Manager-JSP-SERVLET-/web/index.jsp</file>
+            <file>file:/C:/Program%20Files/NetBeans-18/NetBeansProjects/libray-Manager-JSP-SERVLET-/src/java/repository/BookDAO.java</file>
+            <file>file:/C:/Program%20Files/NetBeans-18/NetBeansProjects/libray-Manager-JSP-SERVLET-/src/java/com/mysql/jdbc/PreparedStatement.java</file>
+            <file>file:/C:/Program%20Files/NetBeans-18/NetBeansProjects/libray-Manager-JSP-SERVLET-/src/java/repository/CategoryDAO.java</file>
+            <file>file:/C:/Program%20Files/NetBeans-18/NetBeansProjects/libray-Manager-JSP-SERVLET-/src/java/repository/AuthorDAO.java</file>
+            <file>file:/C:/Program%20Files/NetBeans-18/NetBeansProjects/libray-Manager-JSP-SERVLET-/src/java/repository/ReaderDAO.java</file>
+            <file>file:/C:/Program%20Files/NetBeans-18/NetBeansProjects/libray-Manager-JSP-SERVLET-/src/java/repository/BorrowRequestDAO.java</file>
+            <file>file:/C:/Program%20Files/NetBeans-18/NetBeansProjects/libray-Manager-JSP-SERVLET-/src/java/repository/ConnectDatabase.java</file>
+=======
             <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/src/java/controller/EditBorrowTracking.java</file>
             <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/src/java/service/BookBO.java</file>
             <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/web/pages/manager_borrow_tracking.jsp</file>
@@ -27,6 +37,7 @@
             <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/web/pages/manager_book.jsp</file>
             <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/src/java/model/BorrowTracking.java</file>
             <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/src/java/model/BorrowRequest.java</file>
+>>>>>>> 71e38dc3f4ca4c5c6d7d4af824ec621adcec0d10
         </group>
     </open-files>
 </project-private>

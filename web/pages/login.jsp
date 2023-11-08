@@ -57,7 +57,7 @@
 								</div>
 								<div style="margin-bottom: -14px; margin-top: 25px;">
 									<h6>
-										<b>Chú ý:</b> Tên đăng nhập: <b>nobita</b>, mật khẩu: <b>doraemon</b>
+										<b>Chú ý:</b> Tên đăng nhập: <b>user</b>, mật khẩu: <b>1</b>
 									</h6>
 								</div>
 							</div>
