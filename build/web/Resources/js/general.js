@@ -34,6 +34,15 @@ function remove( button){
 function formatMoney(amount) {
     return amount.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
 }
+function calculateDaysBetweenDates(dateString1, dateString2) {
+    var date1 = new Date(dateString1);
+    var date2 = new Date(dateString2);
+    
+    var timeDifference = date2.getTime() - date1.getTime();
+    var dayDifference = Math.floor(timeDifference / (1000 * 3600 * 24));
+    
+    return dayDifference; // Đảm bảo kết quả là số nguyên dương
+}
 
 
 

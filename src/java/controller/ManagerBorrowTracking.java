@@ -9,12 +9,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.BorrowTracking;
+import service.BookBO;
+import service.BorrowRequestBO;
 import service.BorrowTrackingBO;
+import service.ReaderBO;
 
 @WebServlet("/ManageBorrowTracking")
 public class ManagerBorrowTracking extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private BorrowTrackingBO borrowTrackingService = new BorrowTrackingBO();
+    private ReaderBO readerService= new ReaderBO();
+    private BookBO bookService= new BookBO();
+    private BorrowRequestBO borrowRequestService= new BorrowRequestBO();
 
     public ManagerBorrowTracking() {
         super();
@@ -25,6 +31,11 @@ public class ManagerBorrowTracking extends HttpServlet {
         ArrayList<BorrowTracking> list = null;
         try {
             list = borrowTrackingService.GetAll();
+            for(BorrowTracking bt : list){
+                bt.borrow_request= this.borrowRequestService.GetDetail(bt.request_id);
+                bt.book= this.bookService.findBook(bt.borrow_request.book_id);
+                bt.reader= this.readerService.GetDetail(bt.borrow_request.reader_id);
+            }
         } catch (Exception e) {
             e.printStackTrace();
             errorString = e.getMessage();

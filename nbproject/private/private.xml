@@ -3,22 +3,30 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/web/pages/add_book.jsp</file>
+            <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/src/java/controller/EditBorrowTracking.java</file>
+            <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/src/java/service/BookBO.java</file>
+            <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/web/pages/manager_borrow_tracking.jsp</file>
             <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/src/java/controller/AddBorrowTracking.java</file>
-            <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/src/java/service/BorrowTrackingBO.java</file>
             <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/src/java/repository/BorrowTrackingDAO.java</file>
-            <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/src/java/model/User.java</file>
+            <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/src/java/service/BorrowTrackingBO.java</file>
+            <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/src/java/controller/EditBorrowRequest.java</file>
             <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/web/Resources/js/general.js</file>
             <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/web/Resources/js/pages/add_borrow_tracking.js</file>
-            <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/nbproject/build-impl.xml</file>
+            <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/web/pages/edit_borrow_tracking.jsp</file>
+            <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/src/java/controller/ManagerBorrowTracking.java</file>
+            <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/src/java/controller/HistoryBorrowRequest.java</file>
             <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/web/pages/add_borrow_tracking.jsp</file>
-            <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/web/index.jsp</file>
+            <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/src/java/controller/ManageBook.java</file>
+            <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/web/pages/manager_reader.jsp</file>
+            <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/web/pages/manager_borrow_request.jsp</file>
             <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/web/components/sidebar.jsp</file>
             <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/web/pages/add_borrow_request.jsp</file>
             <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/src/java/controller/AddBorrowRequest.java</file>
+            <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/src/java/controller/ManagerReader.java</file>
+            <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/web/pages/edit_borrow_request.jsp</file>
+            <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/web/pages/manager_book.jsp</file>
             <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/src/java/model/BorrowTracking.java</file>
-            <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/src/java/controller/AddBook.java</file>
-            <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/web/Resources/img/products/OIP.jfif</file>
+            <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/src/java/model/BorrowRequest.java</file>
         </group>
     </open-files>
 </project-private>

@@ -12,7 +12,7 @@ import java.util.Date;
  * @author hoatd
  */
 public class BorrowRequest {
-    public int id, reader_id,book_id, deleted;
+    public int id, reader_id,book_id, status, deleted;
     public Date due_date, updated_at;
     public Reader reader=null;
     public Book book=null;

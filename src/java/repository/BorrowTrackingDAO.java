@@ -13,9 +13,10 @@ import java.util.Date;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
 import com.mysql.jdbc.Statement;
+import java.util.Map;
 import model.BorrowTracking;
 
-public class BorrowTrackingDAO {
+public class BorrowTrackingDAO extends GenerateLibraryDAO{
     Connection conn = null;
     Statement st = null;
     PreparedStatement preSt = null;
@@ -75,6 +76,35 @@ public class BorrowTrackingDAO {
             conn = ConnectDatabase.getMySQLConnection();
         ArrayList<BorrowTracking> list = new ArrayList<BorrowTracking>();
         String sql = "SELECT * FROM borrow_tracking";
+        PreparedStatement pstm = (PreparedStatement) conn.prepareStatement(sql);
+        ResultSet rs = pstm.executeQuery();
+
+        while (rs.next()) {
+            int id = rs.getInt("id");
+            int requestId = rs.getInt("request_id");
+            int returnStatus = rs.getInt("return_status");
+            int deleted = rs.getInt("deleted");
+            double fine_amound=rs.getDouble("fine_amound");
+            Date returnDate = rs.getDate("return_date");
+             Date updated_at= rs.getDate("updated_at");
+            BorrowTracking borrowTracking = new BorrowTracking();
+            borrowTracking.id = id;
+            borrowTracking.request_id = requestId;
+            borrowTracking.return_status = returnStatus;
+            borrowTracking.deleted = deleted;
+            borrowTracking.fine_amound=fine_amound;
+            borrowTracking.return_date = returnDate;
+            borrowTracking.updated_at= updated_at;
+            list.add(borrowTracking);
+        }
+        return list;
+    }
+    public ArrayList<BorrowTracking> getAllBorrowTrackingByConstraint(Map<String,String> constraint) throws ClassNotFoundException, SQLException {
+        if (conn == null)
+            conn = ConnectDatabase.getMySQLConnection();
+        ArrayList<BorrowTracking> list = new ArrayList<BorrowTracking>();
+        String sql = "SELECT * FROM borrow_tracking where true and ";
+        sql= generateSqlWithConstraint(constraint, sql);
         PreparedStatement pstm = (PreparedStatement) conn.prepareStatement(sql);
         ResultSet rs = pstm.executeQuery();
 

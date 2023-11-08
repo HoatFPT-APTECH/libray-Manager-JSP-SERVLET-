@@ -13,9 +13,11 @@ import java.util.Date;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
 import com.mysql.jdbc.Statement;
+import java.util.Map;
+import java.util.regex.Pattern;
 import model.BorrowRequest;
 
-public class BorrowRequestDAO {
+public class BorrowRequestDAO extends GenerateLibraryDAO {
 
     Connection conn = null;
     Statement st = null;
@@ -79,7 +81,7 @@ public class BorrowRequestDAO {
             conn = ConnectDatabase.getMySQLConnection();
         }
         ArrayList<BorrowRequest> list = new ArrayList<BorrowRequest>();
-        String sql = "SELECT * FROM borrow_request where deleted=0  ";
+        String sql = "SELECT * FROM borrow_request where deleted=0 and status=0 order by updated_at desc ";
         PreparedStatement pstm = (PreparedStatement) conn.prepareStatement(sql);
         ResultSet rs = pstm.executeQuery();
 
@@ -109,21 +111,60 @@ public class BorrowRequestDAO {
         }
         return list;
     }
+  
+     public ArrayList<BorrowRequest> getHistoryBorrowRequestsByConstraint( Map<String,String> constraint ) throws ClassNotFoundException, SQLException {
+        if (conn == null) {
+            conn = ConnectDatabase.getMySQLConnection();
+        }
+        ArrayList<BorrowRequest> list = new ArrayList<BorrowRequest>();
+        String sql="SELECT * FROM borrow_request where deleted=0   ";
+          sql= super.generateSqlWithConstraint(constraint, sql);
+          sql += " order by updated_at desc ";
+        PreparedStatement pstm = (PreparedStatement) conn.prepareStatement(sql);
+        ResultSet rs = pstm.executeQuery();
 
+        while (rs.next()) {
+            int id = rs.getInt("id");
+            int readerId = rs.getInt("reader_id");
+            int bookId = rs.getInt("book_id");
+            int deleted = rs.getInt("deleted");
+            Date dueDate = rs.getDate("due_date");
+            Date updated_at= rs.getDate("updated_at");
+            BorrowRequest borrowRequest = new BorrowRequest();
+            borrowRequest.id = id;
+            borrowRequest.reader_id = readerId;
+            borrowRequest.book_id = bookId;
+            borrowRequest.deleted = deleted;
+            borrowRequest.due_date = dueDate;
+            borrowRequest.updated_at=updated_at;
+            try {
+               borrowRequest.book= this.bookRepository.findBook(bookId);
+               borrowRequest.reader= this.readerRepository.findReader(readerId);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            
+
+            list.add(borrowRequest);
+        }
+        return list;
+    }
+    
     // Add methods for updating and deleting borrow requests as needed
     public int updateBorrowRequest(BorrowRequest borrowRequest) throws SQLException, ClassNotFoundException {
         if (conn == null) {
             conn = ConnectDatabase.getMySQLConnection();
         }
         int result = 0;
-        String sql = "UPDATE borrow_request SET reader_id=?, book_id=?, deleted=?, due_date=? WHERE id=?";
+        String sql = "UPDATE borrow_request SET reader_id=?, book_id=?, deleted=?, due_date=?, status=? WHERE id=?";
         PreparedStatement pstm = (PreparedStatement) conn.prepareStatement(sql);
 
         pstm.setInt(1, borrowRequest.reader_id);
         pstm.setInt(2, borrowRequest.book_id);
         pstm.setInt(3, borrowRequest.deleted);
         pstm.setDate(4, new java.sql.Date(borrowRequest.due_date.getTime()));
-        pstm.setInt(5, borrowRequest.id);
+        pstm.setInt(5, borrowRequest.status);
+        pstm.setInt(6, borrowRequest.id);
 
         result = pstm.executeUpdate();
         return result;
