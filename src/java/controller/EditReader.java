@@ -8,30 +8,21 @@ package controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Book;
-import model.BorrowRequest;
 import model.Reader;
-import service.BookBO;
-import service.BorrowRequestBO;
 import service.ReaderBO;
 
 /**
  *
  * @author hoatd
  */
-@WebServlet(name = "EditBorrowRequest", urlPatterns = {"/EditBorrowRequest"})
-public class EditBorrowRequest extends HttpServlet {
-    protected ReaderBO serviceReader= new ReaderBO();
-    protected BorrowRequestBO serviceBorrowRequest= new BorrowRequestBO();
-    protected BookBO serviceBook= new BookBO();
+@WebServlet(name = "EditReader", urlPatterns = {"/EditReader"})
+public class EditReader extends HttpServlet {
+    private ReaderBO serviceReader= new ReaderBO();
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -49,10 +40,10 @@ public class EditBorrowRequest extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet EditBorrowRequest</title>");            
+            out.println("<title>Servlet EditReader</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet EditBorrowRequest at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet EditReader at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -71,13 +62,10 @@ public class EditBorrowRequest extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int id= Integer.parseInt(request.getParameter("id"));
-        BorrowRequest model= this.serviceBorrowRequest.GetDetail(id);
-        Reader reader=this.serviceReader.GetDetail(model.reader_id);
-        request.setAttribute("borrowRequest", model);
+        Reader reader= this.serviceReader.GetDetail(id);
         request.setAttribute("reader", reader);
-        request.setAttribute("page", "edit_borrow_request.jsp");
-        
-           request.getRequestDispatcher("./index.jsp").forward(request, response);
+       request.setAttribute("page", "edit_reader.jsp");
+        request.getRequestDispatcher("./index.jsp").forward(request, response);
     }
 
     /**
@@ -91,35 +79,38 @@ public class EditBorrowRequest extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-  request.setCharacterEncoding("UTF-8");
-        int id= Integer.parseInt(request.getParameter("id"));
-        int book_id= Integer.parseInt(request.getParameter("book_id"));
-       
-        String identityCard= request.getParameter("identity_card");
-        Date due_date= Date.valueOf(request.getParameter("due_date"));
-        Reader reader= this.serviceReader.findReaderByIndentityCard(identityCard).get(0);
-        Book book=null;
-        try {
-            book = this.serviceBook.findBook(book_id);
-            
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(AddBorrowRequest.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(AddBorrowRequest.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        if(reader==null || book==null){
-            response.sendRedirect(request.getContextPath()+"/EditBorrowRequest");
-        }else{
-            BorrowRequest model= this.serviceBorrowRequest.GetDetail(id) ;
-            model.due_date=due_date;
-            model.book_id=book_id;
-            model.reader_id=reader.id;
-            boolean rs= this.serviceBorrowRequest.Update(model.id, model);
-            if(rs){
-                          response.sendRedirect(request.getContextPath()+"/ManageBorrowRequest");  
-            }else{
-                 response.sendRedirect(request.getContextPath()+"/AddBorrowRequest");
-            }
+        request.setCharacterEncoding("UTF-8");
+         int id= Integer.valueOf(request.getParameter("id"));
+        String name = request.getParameter("name");
+        String identityCard = request.getParameter("identity_card");
+        int book_borrowed= Integer.parseInt(request.getParameter("book_borrowed"));
+        int borrowed_time=  Integer.parseInt(request.getParameter("borrowed_time"));
+        String readerAddress = request.getParameter("reader_address");
+        Date dateOfBirth = Date.valueOf(request.getParameter("date_of_birth"));
+        int role_id = Integer.parseInt(request.getParameter("role_id"));
+        Date startDay = Date.valueOf(request.getParameter("start_day"));
+        Date endDay = Date.valueOf(request.getParameter("end_day"));
+        double deposit = Double.parseDouble(request.getParameter("deposit"));
+
+        Reader model = new Reader();
+        model.id=id;
+        model.books_borrowed=book_borrowed;
+        model.borrowed_time=borrowed_time;
+        model.date_of_birth= dateOfBirth;
+        model.deleted=0;
+        model.deposit= deposit;
+        model.end_day= endDay;
+        model.identity_card= identityCard;
+        model.name= name;
+        model.reader_address= readerAddress;
+        model.role_id= role_id;
+        model.start_day= startDay;
+        boolean rs = this.serviceReader.Update(model.id,model);
+
+        if (rs) {
+            response.sendRedirect(request.getContextPath() + "/ManagerReader");
+        } else {
+            response.sendRedirect(request.getContextPath() + "/AddReader");
         }
     }
 

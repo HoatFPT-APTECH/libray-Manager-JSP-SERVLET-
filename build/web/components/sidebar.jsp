@@ -109,10 +109,10 @@
                                     </a>
                                     <ul class="nav nav-treeview">
                                         <li class="nav-item"><a
-                                                href="${pageContext.request.contextPath}/AddReader"
+                                                href="${pageContext.request.contextPath}/ManagerReader"
                                             class="nav-link">
                                                 <i class="far fa-circle nav-icon"></i>
-                                                <p>Thêm người mượn sách</p>
+                                                <p>Quản lý độc giả </p>
                                             </a></li>
                                         <li class="nav-item"><a
                                                 href="${pageContext.request.contextPath}/ManageBorrowRequest"
@@ -122,7 +122,7 @@
                                             </a></li>
 
                                         <li class="nav-item"><a
-                                                href="${pageContext.request.contextPath}/ManageReader?status=1"
+                                                href="${pageContext.request.contextPath}/ManageBorrowTracking"
                                             class="nav-link ">
                                                 <i class="far fa-circle nav-icon"></i>
                                                 <p>Lịch sử mượn sách</p>

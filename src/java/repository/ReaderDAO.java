@@ -76,13 +76,14 @@ public class ReaderDAO {
         }
         return null;
     }
-   public Reader findReaderByIdentityCard(String indentityCard){
-       String sql ="select * from reader where identity_card=?";
+   public ArrayList< Reader> findReaderByIdentityCard(String indentityCard){
+       ArrayList<Reader> list= new ArrayList<Reader>();
+       String sql ="select * from reader where identity_card like ? ";
        try {
            PreparedStatement ps= (PreparedStatement)  this.conn.prepareStatement(sql);
-           ps.setString(1, indentityCard);
+           ps.setString(1, "%" + indentityCard + "%");
            ResultSet rs= ps.executeQuery();
-           if(rs.next()){
+           while(rs.next()){
                     int id = rs.getInt("id");
             int booksBorrowed = rs.getInt("books_borrowed");
             int borrowedTime = rs.getInt("borrowed_time");
@@ -109,11 +110,11 @@ public class ReaderDAO {
             reader.start_day = startDay;
             reader.end_day = endDay;
             reader.deposit = deposit;
-            return reader;
-           }else{
-               return null;
+            list.add(reader);
            }
+           return list;
        } catch (Exception e) {
+           e.printStackTrace();
        }
        return null;
    }

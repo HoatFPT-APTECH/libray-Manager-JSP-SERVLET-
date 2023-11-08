@@ -29,7 +29,7 @@ public class ReaderBO implements IService<Reader> {
         };
         return null;
     }
-    public Reader findReaderByIndentityCard(String IdentityCard){
+    public ArrayList<Reader> findReaderByIndentityCard(String IdentityCard){
         return this.repository.findReaderByIdentityCard(IdentityCard);
     }
     @Override
