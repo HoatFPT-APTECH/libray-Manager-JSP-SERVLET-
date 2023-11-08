@@ -59,7 +59,7 @@ public class AddReader extends HttpServlet {
         boolean rs = this.serviceReader.Add(model);
 
         if (rs) {
-            response.sendRedirect(request.getContextPath() + "/ManageReader");
+            response.sendRedirect(request.getContextPath() + "/ManagerReader");
         } else {
             response.sendRedirect(request.getContextPath() + "/AddReader");
         }
