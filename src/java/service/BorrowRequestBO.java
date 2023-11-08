@@ -7,6 +7,7 @@ package service;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.BorrowRequest;
@@ -24,7 +25,11 @@ public class BorrowRequestBO implements IService<BorrowRequest> {
         } 
         return null;
     }
+    public ArrayList<BorrowRequest> getHistoryBorrowRequestsByConstraint(Map<String,String> constraint ) throws SQLException, ClassNotFoundException{
 
+        return this.repository.getHistoryBorrowRequestsByConstraint(constraint);
+        
+    }
     @Override
     public BorrowRequest GetDetail(int id) {
         try {

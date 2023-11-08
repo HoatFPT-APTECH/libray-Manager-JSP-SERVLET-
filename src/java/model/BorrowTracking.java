@@ -14,8 +14,13 @@ import java.util.Date;
 public class BorrowTracking {
     public int id, request_id, return_status, deleted;
     public double fine_amound;
+   
     public Date return_date, updated_at;
-
+//    Thuộc tính thêm 
+    public BorrowRequest borrow_request;
+    public Book book;
+    public Reader    reader; 
+    
     public BorrowTracking() {
     }
 

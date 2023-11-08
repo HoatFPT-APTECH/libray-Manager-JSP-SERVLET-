@@ -52,6 +52,22 @@ public class ManagerReader extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doGet(request, response);
+       
+        String errorString="Kết quả tìm kiếm ";
+        String identity_card= request.getParameter("identity_card");
+        ArrayList<Reader> list = new ArrayList<>();
+        try {
+            list = readerService.findReaderByIndentityCard(identity_card);
+        } catch (Exception e) {
+            e.printStackTrace();
+            errorString = e.getMessage();
+        }
+           request.setAttribute("errorString", errorString);
+    
+        request.setAttribute("readerList", list);
+        request.getSession().setAttribute("Check", "ManageReader");
+        request.setAttribute("page", "manager_reader.jsp");
+        RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/index.jsp");
+        dispatcher.forward(request, response);
     }
 }

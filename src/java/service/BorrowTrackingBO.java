@@ -7,6 +7,7 @@ package service;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.BorrowTracking;
@@ -25,6 +26,9 @@ public class BorrowTrackingBO implements IService<BorrowTracking> {
             Logger.getLogger(BorrowTrackingBO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
+    }
+    public ArrayList<BorrowTracking> GetAllWithConstraint(Map<String,String> constraint) throws ClassNotFoundException, SQLException{
+        return this.repository.getAllBorrowTrackingByConstraint(constraint);
     }
 
     @Override

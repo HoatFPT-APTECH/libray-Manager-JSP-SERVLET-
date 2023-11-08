@@ -91,7 +91,7 @@ public class AddBorrowRequest extends HttpServlet {
         int book_id= Integer.parseInt(request.getParameter("book_id"));
         String identityCard= request.getParameter("identity_card");
         Date due_date= Date.valueOf(request.getParameter("due_date"));
-        Reader reader= this.serviceReader.findReaderByIndentityCard(identityCard);
+        Reader reader= this.serviceReader.findReaderByIndentityCard(identityCard).get(0);
         Book book=null;
         try {
             book = this.serviceBook.findBook(book_id);
@@ -101,14 +101,18 @@ public class AddBorrowRequest extends HttpServlet {
             Logger.getLogger(AddBorrowRequest.class.getName()).log(Level.SEVERE, null, ex);
         }
         if(reader==null || book==null){
-            response.sendRedirect(request.getContextPath()+"/AddBorrowRequest");
+            request.setAttribute("errorString", "Lỗi! Không tìm thấy Sách hoặc độc giả.");
+           request.setAttribute("page", "add_borrow_request.jsp");
+            request.getRequestDispatcher("./index.jsp").forward(request, response);
         }else{
             BorrowRequest model= new BorrowRequest(-1, reader.id, book_id, 0, due_date);
             boolean rs= this.serviceBorrowRequest.Add(model);
             if(rs){
                           response.sendRedirect(request.getContextPath()+"/ManageBorrowRequest");  
             }else{
-                 response.sendRedirect(request.getContextPath()+"/AddBorrowRequest");
+                request.setAttribute("errorString", "Lỗi! Không thêm được yêu cầu mượn sách.");
+           request.setAttribute("page", "add_borrow_request.jsp");
+            request.getRequestDispatcher("./index.jsp").forward(request, response);
             }
         }
         
