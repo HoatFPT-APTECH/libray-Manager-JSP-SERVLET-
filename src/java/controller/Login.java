@@ -1,100 +1,89 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package controller;
 
 import java.io.IOException;
-import java.sql.SQLException;
-
-import javax.servlet.RequestDispatcher;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.User;
-import service.GetCookie;
-import service.UserBO;
-
 
 /**
- * Servlet implementation class Login
+ *
+ * @author hoatd
  */
-@WebServlet("/Login")
-public class Login extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-	private UserBO userBO = new UserBO();
+@WebServlet(name = "Index", urlPatterns = {"/"})
+public class Index extends HttpServlet {
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
-	public Login() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet Index</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet Index at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        }
+    }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		if (request.getSession().getAttribute("User") == null) {
-			// TODO Auto-generated method stub
-			String errorString = null;
-			if (request.getAttribute("errorString") != null) {
-				errorString = (String) request.getAttribute("errorString");
-			}
-			request.getSession().removeAttribute("Check");
-			// Lưu thông tin vào request attribute trước khi forward sang views.
-			request.setAttribute("errorString", errorString);
-			RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/login.jsp");
-			dispatcher.forward(request, response);
-		} else {
-			RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/UserManual");
-			dispatcher.forward(request, response);
-		}
-	}
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+          request.setAttribute("page", "login.jsp");
+          request.getRequestDispatcher("index.jsp").forward(request, response);
+    }
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		String username = request.getParameter("username");
-		String password = request.getParameter("password");
-		String rememberMeStr = request.getParameter("rememberMe");
-		boolean remember = "Y".equals(rememberMeStr);
-		System.out.println("Day" + remember);
-		String errorString = null;
-		User user = new User();
+    /**
+     * Handles the HTTP <code>POST</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
 
-		try {
-			user = userBO.getAccount(username, password);
-		} catch (ClassNotFoundException | SQLException e) {
-			// TODO Auto-generated catch block
-			user = null;
-			errorString = "Lỗi kết nối cơ sở dữ liệu";
-			e.printStackTrace();
-		}
-		if (user != null) {
-			request.getSession().setAttribute("User", user);
-			if (remember) {
-
-				GetCookie.storeUserCookie(response, user);
-			}
-			// Ngược lại xóa Cookie
-			else {
-				GetCookie.deleteUserCookie(response);
-			}
-			RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/UserManual");
-			dispatcher.forward(request, response);
-		} else {
-			if (errorString == null)
-				errorString = "Sai tên tài khoản hoặc mật khẩu";
-			request.setAttribute("errorString", errorString);
-			doGet(request, response);
-		}
-
-	}
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }// </editor-fold>
 
 }
