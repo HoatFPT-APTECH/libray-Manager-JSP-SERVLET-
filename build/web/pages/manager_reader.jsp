@@ -23,7 +23,7 @@
                                     <h2>Quản lý <b>Độc giả</b></h2>
                                 </div>
                                 <div class="col-sm-8">						
-                                    <a href="<%= request.getContextPath() %>/AddReader" class="btn btn-success">      <i class="fa fa-plus" aria-hidden="true"></i> <span>Thêm mới</span></a>
+                                    <a href="<%= request.getContextPath() %>/AddReader" class="btn btn-success">      <i class="fa fa-plus" aria-hidden="true"></i> <span>Thêm mới 2</span></a>
                         
                                 </div>
                             </div>
