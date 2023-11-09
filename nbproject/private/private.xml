@@ -3,10 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/web/components/footer.jsp</file>
-            <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/web/components/sidebar.jsp</file>
-            <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/web/Resources/js/general.js</file>
-            <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/web/Resources/js/pages/add_borrow_tracking.js</file>
+            <file>file:/E:/QuanLyThuVien/web/index.jsp</file>
+            <file>file:/E:/QuanLyThuVien/web/pages/manager_publisher.jsp</file>
+            <file>file:/E:/QuanLyThuVien/src/java/controller/ManagerReader.java</file>
+            <file>file:/E:/QuanLyThuVien/web/pages/manager_category.jsp</file>
+            <file>file:/E:/QuanLyThuVien/web/pages/dashboard.jsp</file>
+            <file>file:/E:/QuanLyThuVien/src/java/repository/AuthorDAO.java</file>
+            <file>file:/E:/QuanLyThuVien/web/pages/manager_reader.jsp</file>
+            <file>file:/E:/QuanLyThuVien/src/java/controller/Login.java</file>
+            <file>file:/E:/QuanLyThuVien/src/java/repository/ConnectDatabase.java</file>
         </group>
     </open-files>
 </project-private>
