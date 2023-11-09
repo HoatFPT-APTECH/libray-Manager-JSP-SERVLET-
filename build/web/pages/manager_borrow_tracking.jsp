@@ -71,7 +71,7 @@ Author     : Your Name
                                     </td>
                                     <td>
                                         <p>Tên :<%= tracking.book.getName() %> </p>
-                                        <p>Giá: <%= tracking.book.price %> Đồng  </p>
+                                        <p>Giá: <span class="format-money"> <%= tracking.book.price %></span> Đồng  </p>
                                         <div>
                                                 <img
                                             src="Resources/img/products/<%=tracking.book.getImage()%>" width="35"

@@ -3,11 +3,27 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+console.log("nhan file general")
 document.addEventListener("DOMContentLoaded", function () {
-    // Thực hiện các tác vụ sau khi DOM đã tải hoàn toàn
-    // Ví dụ: thêm xử lý sự kiện, truy cập và tương tác với các phần tử DOM
+  
     showErr();
+    changeFormatMoney();
+    loadLogin();
 });
+function loadLogin(){
+        var userI = JSON.parse(window.sessionStorage.getItem("user"));
+        var userDiv= document.querySelector("#user")
+     console.log(userI)
+   userDiv.innerHTML=userI.name;
+}
+function changeFormatMoney(){
+    var moneyDiv= document.querySelectorAll(".format-money");
+    for(var i=0;i<moneyDiv.length;i++){
+        var element= moneyDiv[i];
+        var money= element.value;
+        element.innerHTML=formatMoney(money);
+    }
+}
 function showErr(){
          var errStr= document.getElementById("errorString")
                               var str=errStr.value;

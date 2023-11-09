@@ -7,19 +7,24 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.User;
+import service.UserBO;
 
 /**
  *
  * @author hoatd
  */
-@WebServlet(name = "Index", urlPatterns = {"/"})
-public class Index extends HttpServlet {
-
+@WebServlet(name = "Login", urlPatterns = {"/"})
+public class Login extends HttpServlet {
+     private UserBO service= new UserBO();
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -58,8 +63,8 @@ public class Index extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-          request.setAttribute("page", "login.jsp");
-          request.getRequestDispatcher("index.jsp").forward(request, response);
+    
+          request.getRequestDispatcher("/pages/login.jsp").forward(request, response);
     }
 
     /**
@@ -73,7 +78,25 @@ public class Index extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+         try {
+             String userName= request.getParameter("userName");
+             String password= request.getParameter("password");
+             User user= this.service.getAccount(userName, password);
+             if(user!=null){
+
+                 request.setAttribute("user", user);
+                 
+                 request.setAttribute("page", "dashboard.jsp");
+                 request.getRequestDispatcher("/index.jsp").forward(request, response);
+             }else{
+                 request.setAttribute("rs", false);
+                  request.getRequestDispatcher("/pages/login.jsp").forward(request, response);
+             }
+         } catch (ClassNotFoundException ex) {
+             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+         } catch (SQLException ex) {
+             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+         }
     }
 
     /**
