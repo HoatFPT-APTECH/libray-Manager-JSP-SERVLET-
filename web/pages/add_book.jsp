@@ -4,6 +4,7 @@
     Author     : hoatd
 --%>
 
+<%@page import="model.Author"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="model.Category"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -59,6 +60,8 @@
 										
 									
 								</div>
+                                                                                
+                                                                
 								<div class="form-group">
 									<label>Số lượng</label> <input type="number"
 										class="form-control" id="count" name="count" min="1" value="1">

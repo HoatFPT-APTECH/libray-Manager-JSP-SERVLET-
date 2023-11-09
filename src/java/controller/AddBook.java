@@ -103,6 +103,7 @@ public class AddBook extends HttpServlet {
             e1.printStackTrace();
         }
         book.setCategory(category);
+        
         book.setAmount(count);
         book.setImage(fileName);
         try {
