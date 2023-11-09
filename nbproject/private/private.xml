@@ -3,17 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/QuanLyThuVien/web/index.jsp</file>
             <file>file:/E:/QuanLyThuVien/web/pages/manager_publisher.jsp</file>
-            <file>file:/E:/QuanLyThuVien/src/java/controller/AddReader.java</file>
-            <file>file:/E:/QuanLyThuVien/src/java/controller/ManagerReader.java</file>
             <file>file:/E:/QuanLyThuVien/web/pages/manager_category.jsp</file>
-            <file>file:/E:/QuanLyThuVien/web/pages/dashboard.jsp</file>
-            <file>file:/E:/QuanLyThuVien/web/pages/manager_borrow_request.jsp</file>
-            <file>file:/E:/QuanLyThuVien/src/java/repository/AuthorDAO.java</file>
-            <file>file:/E:/QuanLyThuVien/web/pages/manager_reader.jsp</file>
-            <file>file:/E:/QuanLyThuVien/src/java/controller/Login.java</file>
-            <file>file:/E:/QuanLyThuVien/src/java/repository/ConnectDatabase.java</file>
+            <file>file:/E:/QuanLyThuVien/web/pages/manager_author.jsp</file>
+            <file>file:/E:/QuanLyThuVien/web/pages/manager_book.jsp</file>
         </group>
     </open-files>
 </project-private>
