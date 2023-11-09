@@ -37,14 +37,23 @@ public class BookBO {
 	public ArrayList<Book> searchBook(String name_search) throws ClassNotFoundException, SQLException {
 		return BookDAO.getSearchBook(name_search);
 	}
-
+        
+        public int deleteBook (int id) throws ClassNotFoundException, SQLException{
+                return BookDAO.deleteBook(id);
+        }
 	
 	public int updateBook(Book Book) throws ClassNotFoundException, SQLException {
 		return BookDAO.updateBook(Book);
 	}
+<<<<<<< HEAD
    
         
 public int deleteBook (int id) throws ClassNotFoundException, SQLException{
                 return BookDAO.deleteBook(id);
         }
+=======
+
+    
+
+>>>>>>> b5ecd520dbbc9499c4eba6437741d855ff5b27cd
 }

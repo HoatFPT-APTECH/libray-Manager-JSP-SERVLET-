@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/E:/QuanLyThuVien/web/index.jsp</file>
             <file>file:/E:/QuanLyThuVien/web/pages/manager_publisher.jsp</file>
             <file>file:/E:/QuanLyThuVien/src/java/controller/ManagerReader.java</file>
@@ -12,6 +13,12 @@
             <file>file:/E:/QuanLyThuVien/web/pages/manager_reader.jsp</file>
             <file>file:/E:/QuanLyThuVien/src/java/controller/Login.java</file>
             <file>file:/E:/QuanLyThuVien/src/java/repository/ConnectDatabase.java</file>
+=======
+            <file>file:/E:/github/libray-Manager-JSP-SERVLET-/web/pages/manager_book.jsp</file>
+            <file>file:/E:/github/libray-Manager-JSP-SERVLET-/src/java/controller/AddBorrowRequest.java</file>
+            <file>file:/E:/github/libray-Manager-JSP-SERVLET-/src/java/controller/AddBorrowTracking.java</file>
+            <file>file:/E:/github/libray-Manager-JSP-SERVLET-/web/pages/manager_borrow_request.jsp</file>
+>>>>>>> b5ecd520dbbc9499c4eba6437741d855ff5b27cd
         </group>
     </open-files>
 </project-private>

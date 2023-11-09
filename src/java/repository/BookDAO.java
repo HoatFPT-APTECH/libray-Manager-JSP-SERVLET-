@@ -169,6 +169,7 @@ public class BookDAO {
 		if (conn == null)
 			conn = ConnectDatabase.getMySQLConnection();
 		String sql = "Update Book set name =?,category_id =?,amount =?,image =?  where id=? ";
+                
 		PreparedStatement pstm = (PreparedStatement) conn.prepareStatement(sql);
 		
 		pstm.setString(1, book.getName());
@@ -179,14 +180,23 @@ public class BookDAO {
 		result = pstm.executeUpdate();
 		return result;
 	}
+<<<<<<< HEAD
 
 public int deleteBook(int id) throws ClassNotFoundException, SQLException {
+=======
+	
+        public int deleteBook(int id) throws ClassNotFoundException, SQLException {
+>>>>>>> b5ecd520dbbc9499c4eba6437741d855ff5b27cd
             
                 int result = 0;
                 if (conn == null)
                     conn = ConnectDatabase.getMySQLConnection();
                 try {
+<<<<<<< HEAD
                     String delete = "update Book set deleted=1 where id= ?";
+=======
+                    String delete = "DELETE FROM Book WHERE id = ?";
+>>>>>>> b5ecd520dbbc9499c4eba6437741d855ff5b27cd
                     preSt = (PreparedStatement) conn.prepareStatement(delete);
                     preSt.setInt(1, id);
                     result = preSt.executeUpdate();
@@ -197,4 +207,8 @@ public int deleteBook(int id) throws ClassNotFoundException, SQLException {
                 return result;
             }
 
+<<<<<<< HEAD
+=======
+	
+>>>>>>> b5ecd520dbbc9499c4eba6437741d855ff5b27cd
 }
