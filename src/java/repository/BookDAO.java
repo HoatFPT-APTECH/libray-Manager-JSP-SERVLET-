@@ -169,6 +169,7 @@ public class BookDAO {
 		if (conn == null)
 			conn = ConnectDatabase.getMySQLConnection();
 		String sql = "Update Book set name =?,category_id =?,amount =?,image =?  where id=? ";
+                
 		PreparedStatement pstm = (PreparedStatement) conn.prepareStatement(sql);
 		
 		pstm.setString(1, book.getName());
@@ -181,12 +182,15 @@ public class BookDAO {
 	}
 
 public int deleteBook(int id) throws ClassNotFoundException, SQLException {
+
             
                 int result = 0;
                 if (conn == null)
                     conn = ConnectDatabase.getMySQLConnection();
                 try {
+
                     String delete = "update Book set deleted=1 where id= ?";
+
                     preSt = (PreparedStatement) conn.prepareStatement(delete);
                     preSt.setInt(1, id);
                     result = preSt.executeUpdate();
@@ -196,5 +200,6 @@ public int deleteBook(int id) throws ClassNotFoundException, SQLException {
                 }
                 return result;
             }
+
 
 }

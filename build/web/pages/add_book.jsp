@@ -55,10 +55,18 @@
                                                                                 <option value="<%=Integer.toString(category.getId())%>"><%=category.getName()%></option>
                                                                                 <%}%>
                                                                                 </select>
-                                                                               
-										
-									
+                                                                               	
 								</div>
+                                                                <div class="form-group">
+									<label>Thể loại</label> 
+										<!-- <option value="">Chọn 1 thể loại</option> -->
+                                                                                <select name="category">
+                                                                                     <%for(Category category: (ArrayList<Category>) request.getAttribute("categoryList") ){%>
+                                                                                <option value="<%=Integer.toString(category.getId())%>"><%=category.getName()%></option>
+                                                                                <%}%>
+                                                                                </select>
+                                                                               	
+								</div>            
 								<div class="form-group">
 									<label>Số lượng</label> <input type="number"
 										class="form-control" id="count" name="count" min="1" value="1">
