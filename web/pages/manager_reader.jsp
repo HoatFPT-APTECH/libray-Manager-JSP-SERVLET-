@@ -23,8 +23,8 @@
                                     <h2>Quản lý <b>Độc giả</b></h2>
                                 </div>
                                 <div class="col-sm-8">						
-                                    <a href="#" class="btn btn-primary"><i class="material-icons">&#xE863;</i> <span>Refresh List</span></a>
-                                    <a href="#" class="btn btn-secondary"><i class="material-icons">&#xE24D;</i> <span>Export to Excel</span></a>
+                                    <a href="<%= request.getContextPath() %>/AddReader" class="btn btn-success">      <i class="fa fa-plus" aria-hidden="true"></i> <span>Thêm mới 2</span></a>
+                        
                                 </div>
                             </div>
                         </div>

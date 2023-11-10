@@ -56,9 +56,7 @@
                                                                                 <option value="<%=Integer.toString(category.getId())%>"><%=category.getName()%></option>
                                                                                 <%}%>
                                                                                 </select>
-                                                                               
-										
-									
+                                                                               	
 								</div>
                                                                                 
                                                                 
