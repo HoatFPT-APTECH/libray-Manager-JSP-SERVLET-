@@ -90,8 +90,8 @@
                                     <td> <%= book.getId() %> </td>
                                     <td> <%= book.getName() %></td>
                                     <td> <%=book.getCategory().getName()%> </td>
-                                    <td style="text-align: center;">${book.getAmount()}</td>
-                                    <td>${book.getDay()}</td>
+                                    <td style="text-align: center;"> <%=book.getAmount()%></td>
+                                    <td><%=book.getDay()%></td>
                                     <td style="text-align: center;"><img
                                             src="Resources/img/products/<%=book.getImage()%>" width="35"
                                             height="50">

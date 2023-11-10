@@ -2,6 +2,7 @@ package service;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import model.Author;
 
 
 import model.Category;
@@ -37,5 +38,9 @@ public class CategoryBO {
 	public int updateCategory(Category category) throws ClassNotFoundException, SQLException {
 		return categoryDAO.updateCategory(category);
 	}
+
+    public Author findAuthor(String category_id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
 }
