@@ -5,7 +5,7 @@
 --%>
 
 
-<%@page import="model.User"%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
   <!-- Main Sidebar Container -->
             <aside class="main-sidebar sidebar-dark-primary elevation-4">
@@ -19,31 +19,18 @@
                 <div class="sidebar">
                     <!-- Sidebar user panel (optional) -->
                     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                        <%
-                            if (request.getSession().getAttribute("User") != null) {
-                        %>
-                        <%
-                            User user = (User) request.getSession().getAttribute("User");
-                        %>
+                      
                         <div class="image">
                             <img src="<%= request.getContextPath() %>/Resources/img/avatar/avatar.png" class="img-circle elevation-2"
                                  alt="User Image">
                         </div>
                         <div class="info">
 
-                            <a href="#" class="d-block"><%=user.getUsername()%></a>
+                            <a href="#" id="user" class="d-block"></a>
                         </div>
-                        <%
-                        } else {
-                        %>
+                      
 
-                        <div class="info" style="margin-left: 60px;">
-                            <a href="${pageContext.request.contextPath}/" class="d-block">Đăng
-                                nhập</a>
-                        </div>
-                        <%
-                            }
-                        %>
+                        
                     </div>
 
                     <!-- Sidebar Menu -->
@@ -54,7 +41,7 @@
                                     href="${pageContext.request.contextPath}/UserManual"
                                     class="nav-link ">
                                         <i class="nav-icon fas fa-book"></i>
-                                        <p>Hướng dẫn</p>
+                                        <p>Cửa sổ làm việc</p>
                                     </a></li>
                                 <li
                                     class="nav-item has-treeview "><a

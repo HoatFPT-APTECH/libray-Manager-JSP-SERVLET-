@@ -28,10 +28,10 @@
               </div>
             
         </div>
-                    
+                   <input type="hidden" id="errorString" value="${errorString}"/>;  
                       <jsp:include page="./components/footer.jsp"/> 
                      
-                          <input type="hidden" id="errorString" value="${errorString}"/>;
+                         
                         
                          
     </body>

@@ -6,16 +6,14 @@
 <%@page import="model.Author"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<div class="content-wrapper">
-    <!-- Main content -->
-    <section class="content">
+
         <div class="row justify-content-center">
             <div style="margin-top: 20px; color: red;">${errorString}</div>
         </div>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-3"></div>
-                <div class="col-md-6">
+         
+                <div class="col">
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Danh sách tên tác giả</h3>
@@ -85,7 +83,5 @@
                     </div>
                     <!-- /.card -->
                 </div>
-            </div>
-            <!-- /.container-fluid -->
-    </section>
+
 

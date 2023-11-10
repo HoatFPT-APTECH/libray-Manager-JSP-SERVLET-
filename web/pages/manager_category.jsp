@@ -7,18 +7,14 @@
 <%@page import="model.Category"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!-- Main content -->
-<!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper">
-    <!-- Main content -->
-    <section class="content">
+
         <div class="row justify-content-center">
             <div style="margin-top: 20px; color: red;">${errorString}</div>
         </div>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-3"></div>
-                <div class="col-md-6">
+           
+                <div class="col">
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Danh sách thể loại sách</h3>
@@ -88,6 +84,4 @@
                     </div>
                     <!-- /.card -->
                 </div>
-            </div>
-            <!-- /.container-fluid -->
-    </section>
+ 
