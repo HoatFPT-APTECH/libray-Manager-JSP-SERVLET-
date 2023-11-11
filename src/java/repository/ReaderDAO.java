@@ -17,11 +17,12 @@ import java.util.Date;
 import com.mysql.jdbc.PreparedStatement;
 
 import com.mysql.jdbc.Statement;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Reader;
 
-public class ReaderDAO {
+public class ReaderDAO extends GenerateLibraryDAO {
     Connection conn = null;
     Statement st = null;
     PreparedStatement preSt = null;
@@ -34,49 +35,7 @@ public class ReaderDAO {
         }
     }
     
-
-    public Reader findReader(int id) throws SQLException, ClassNotFoundException {
-        if (conn == null)
-            conn = ConnectDatabase.getMySQLConnection();
-        String sql = "SELECT * FROM reader WHERE id=?";
-
-        PreparedStatement pstm = (PreparedStatement) conn.prepareStatement(sql);
-        pstm.setInt(1, id);
-
-        ResultSet rs = pstm.executeQuery();
-
-        while (rs.next()) {
-            int booksBorrowed = rs.getInt("books_borrowed");
-            int borrowedTime = rs.getInt("borrowed_time");
-            int roleId = rs.getInt("role_id");
-            int deleted = rs.getInt("deleted");
-            String name = rs.getString("name");
-            String readerAddress = rs.getString("reader_address");
-            String identityCard = rs.getString("identity_card");
-            Date dateOfBirth = rs.getDate("date_of_birth");
-            Date startDay = rs.getDate("start_day");
-            Date endDay = rs.getDate("end_day");
-            double deposit = rs.getDouble("deposit");
-
-            Reader reader = new Reader();
-            reader.id = id;
-            reader.books_borrowed = booksBorrowed;
-            reader.borrowed_time = borrowedTime;
-            reader.role_id = roleId;
-            reader.deleted = deleted;
-            reader.name = name;
-            reader.reader_address = readerAddress;
-            reader.identity_card = identityCard;
-            reader.date_of_birth = dateOfBirth;
-            reader.start_day = startDay;
-            reader.end_day = endDay;
-            reader.deposit = deposit;
-
-            return reader;
-        }
-        return null;
-    }
-   public ArrayList< Reader> findReaderByIdentityCard(String indentityCard){
+public ArrayList< Reader> findReaderByIdentityCard(String indentityCard){
        ArrayList<Reader> list= new ArrayList<Reader>();
        String sql ="select * from reader where identity_card like ? ";
        try {
@@ -118,6 +77,49 @@ public class ReaderDAO {
        }
        return null;
    }
+    public Reader findReader(int id) throws SQLException, ClassNotFoundException {
+        if (conn == null)
+            conn = ConnectDatabase.getMySQLConnection();
+        String sql = "SELECT * FROM reader WHERE id=?";
+
+        PreparedStatement pstm = (PreparedStatement) conn.prepareStatement(sql);
+        pstm.setInt(1, id);
+
+        ResultSet rs = pstm.executeQuery();
+
+        while (rs.next()) {
+            int booksBorrowed = rs.getInt("books_borrowed");
+            int borrowedTime = rs.getInt("borrowed_time");
+            int roleId = rs.getInt("role_id");
+            int deleted = rs.getInt("deleted");
+            String name = rs.getString("name");
+            String readerAddress = rs.getString("reader_address");
+            String identityCard = rs.getString("identity_card");
+            Date dateOfBirth = rs.getDate("date_of_birth");
+            Date startDay = rs.getDate("start_day");
+            Date endDay = rs.getDate("end_day");
+            double deposit = rs.getDouble("deposit");
+
+            Reader reader = new Reader();
+            reader.id = id;
+            reader.books_borrowed = booksBorrowed;
+            reader.borrowed_time = borrowedTime;
+            reader.role_id = roleId;
+            reader.deleted = deleted;
+            reader.name = name;
+            reader.reader_address = readerAddress;
+            reader.identity_card = identityCard;
+            reader.date_of_birth = dateOfBirth;
+            reader.start_day = startDay;
+            reader.end_day = endDay;
+            reader.deposit = deposit;
+
+            return reader;
+        }
+        return null;
+    }
+    
+  
     public int insertReader(Reader reader) throws SQLException, ClassNotFoundException {
         if (conn == null)
             conn = ConnectDatabase.getMySQLConnection();
@@ -144,12 +146,56 @@ public class ReaderDAO {
         System.out.println("Result: " + result);
         return result;
     }
+      public ArrayList<Reader> getAllReaders(ArrayList<String> constraint) throws ClassNotFoundException, SQLException {
+        if (conn == null)
+            conn = ConnectDatabase.getMySQLConnection();
+        ArrayList<Reader> list = new ArrayList<Reader>();
+        String sql = "SELECT * FROM Reader where deleted=0 ";
+         
+            sql= super.generateSqlWithConstraint(constraint, sql);
 
+          
+          System.out.println(sql);
+        PreparedStatement pstm = (PreparedStatement) conn.prepareStatement(sql);
+        ResultSet rs = pstm.executeQuery();
+
+        while (rs.next()) {
+            int id = rs.getInt("id");
+            int booksBorrowed = rs.getInt("books_borrowed");
+            int borrowedTime = rs.getInt("borrowed_time");
+            int roleId = rs.getInt("role_id");
+            int deleted = rs.getInt("deleted");
+            String name = rs.getString("name");
+            String readerAddress = rs.getString("reader_address");
+            String identityCard = rs.getString("identity_card");
+            Date dateOfBirth = rs.getDate("date_of_birth");
+            Date startDay = rs.getDate("start_day");
+            Date endDay = rs.getDate("end_day");
+            double deposit = rs.getDouble("deposit");
+
+            Reader reader = new Reader();
+            reader.id = id;
+            reader.books_borrowed = booksBorrowed;
+            reader.borrowed_time = borrowedTime;
+            reader.role_id = roleId;
+            reader.deleted = deleted;
+            reader.name = name;
+            reader.reader_address = readerAddress;
+            reader.identity_card = identityCard;
+            reader.date_of_birth = dateOfBirth;
+            reader.start_day = startDay;
+            reader.end_day = endDay;
+            reader.deposit = deposit;
+
+            list.add(reader);
+        }
+        return list;
+    }
     public ArrayList<Reader> getAllReaders() throws ClassNotFoundException, SQLException {
         if (conn == null)
             conn = ConnectDatabase.getMySQLConnection();
         ArrayList<Reader> list = new ArrayList<Reader>();
-        String sql = "SELECT * FROM Reader";
+        String sql = "SELECT * FROM Reader where deleted=0";
         PreparedStatement pstm = (PreparedStatement) conn.prepareStatement(sql);
         ResultSet rs = pstm.executeQuery();
 

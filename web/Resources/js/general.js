@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-console.log("nhan file general")
+
 document.addEventListener("DOMContentLoaded", function () {
   
     showErr();
@@ -20,7 +20,8 @@ function changeFormatMoney(){
     var moneyDiv= document.querySelectorAll(".format-money");
     for(var i=0;i<moneyDiv.length;i++){
         var element= moneyDiv[i];
-        var money= element.value;
+        var money= parseFloat(element.innerText) ;
+
         element.innerHTML=formatMoney(money);
     }
 }
@@ -48,7 +49,10 @@ function remove( button){
 }
 
 function formatMoney(amount) {
-    return amount.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+    amount = Math.round(amount);
+
+    // Định dạng số thành chuỗi và bỏ số thập phân
+    return amount.toString().replace(/\d(?=(\d{3})+$)/g, '$&,');
 }
 function calculateDaysBetweenDates(dateString1, dateString2) {
     var date1 = new Date(dateString1);

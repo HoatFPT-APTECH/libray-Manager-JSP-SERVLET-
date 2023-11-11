@@ -112,12 +112,12 @@ public class BorrowRequestDAO extends GenerateLibraryDAO {
         return list;
     }
   
-     public ArrayList<BorrowRequest> getHistoryBorrowRequestsByConstraint( Map<String,String> constraint ) throws ClassNotFoundException, SQLException {
+     public ArrayList<BorrowRequest> getHistoryBorrowRequestsByConstraint( ArrayList<String> constraint ) throws ClassNotFoundException, SQLException {
         if (conn == null) {
             conn = ConnectDatabase.getMySQLConnection();
         }
         ArrayList<BorrowRequest> list = new ArrayList<BorrowRequest>();
-        String sql="SELECT * FROM borrow_request where deleted=0   ";
+        String sql="SELECT br.* FROM borrow_request br left join reader r on r.id= br.reader_id   where br.deleted=0   ";
           sql= super.generateSqlWithConstraint(constraint, sql);
           sql += " order by updated_at desc ";
         PreparedStatement pstm = (PreparedStatement) conn.prepareStatement(sql);

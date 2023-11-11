@@ -1,51 +1,75 @@
-<%--
-Document   : manager_borrow_tracking
-Created on : Nov 7, 2023, 3:50:02 PM
-Author     : Your Name
+<%-- 
+    Document   : manager_borrow_request
+    Created on : Nov 1, 2023, 3:50:02 PM
+    Author     : hoatd
 --%>
 
 <%@page import="model.BorrowTracking"%>
+<%@page import="model.BorrowRequest"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<%-- Include necessary imports here --%>
+<%-- 
+    Document   : manager_book
+    Created on : Oct 26, 2023, 3:07:29 PM
+    Author     : hoatd
+--%>
+
+<%@page import="model.Book"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="java.util.Date"%>
+<%@page import="java.util.ArrayList"%>
+
 
 <!-- Main content -->
 
 <section class="content">
-
     <div class="container-fluid">
         <div class="row">
-
             <div class="col-md-12">
-                <div class="card">
-                    <form role="form" method="post"
-                          action="${pageContext.request.contextPath}/SearchBorrowTracking">
-                        <div class="card-header">
-                            <h3 class="card-title">Danh sách lịch sử  mượn/trả sách</h3>
-
-                            <div class="card-tools" style="margin-right: 1px;">
-                                <div class="input-group input-group-sm" style="width: 200px;">
-                                    <input type="text" name="data_search"
-                                           class="form-control float-right"
-                                           placeholder="Tìm kiếm theo ID hoặc ngày trả">
-
-                                    <div class="input-group-append">
-                                        <button type="submit" class="btn btn-primary">
-                                            <i class="fas fa-search"></i>
-                                        </button>
-                                    </div>
+                <div class="table-responsive">
+                    <div class="table-wrapper">
+                        <div class="table-title">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <h2>Lịch sử <b> mượn/trả sách</b></h2>
+                                </div>
+                                <div class="col-sm-8">						
+                                   
+                                    <a href="<%= request.getContextPath() %>/AddBorrowTracking" class="btn btn-success">      <i class="fa fa-plus" aria-hidden="true"></i> <span>Thêm mới</span></a>
                                 </div>
                             </div>
-
                         </div>
-                    </form>
-
-                    <!-- /.card-header -->
-                    <div class="card-body">
-                    
-                        <table class="table table-bordered table-hover" id="example2">
+                        <div class="table-filter">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <div class="show-entries">
+                                        <span>Show</span>
+                                        <select class="form-control">
+                                            <option>5</option>
+                                            <option>10</option>
+                                            <option>15</option>
+                                            <option>20</option>
+                                        </select>
+                                        <span>entries</span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-9">
+                                    <form action="<%= request.getContextPath() %>/ManageBorrowTracking" method="post">
+                                      <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                                    <div class="filter-group">
+                                        <label>Tìm kiếm</label>
+                                        <input  type="text" 
+                                            name="identity_card"
+                                               value="<%= request.getAttribute("identity_card") %>" 
+                                                class="form-control" placeholder="Tìm kiểm theo CMT">
+                                    </div>
+                                   
+                                    <span class="filter-icon"><i class="fa fa-filter"></i></span>  
+                                    </form>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <table class="table table-striped table-hover">
                             <thead>
                                 <tr>
                                     <th>ID</th>
@@ -60,7 +84,8 @@ Author     : Your Name
                                 </tr>
                             </thead>
                             <tbody>
-                                <%for (BorrowTracking tracking : (ArrayList<BorrowTracking>) request.getAttribute("borrowTrackingList")) {%>
+                                
+                               <%for (BorrowTracking tracking : (ArrayList<BorrowTracking>) request.getAttribute("borrowTrackingList")) {%>
                                 <tr>
                                     <td><%= tracking.id%></td>
                                     <td>
@@ -118,24 +143,24 @@ Author     : Your Name
                             <%}%>
                             </tbody>
                         </table>
+                        <div class="clearfix">
+                            <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
+                            <ul class="pagination">
+                                <li class="page-item disabled"><a href="#">Previous</a></li>
+                                <li class="page-item"><a href="#" class="page-link">1</a></li>
+                                <li class="page-item"><a href="#" class="page-link">2</a></li>
+                                <li class="page-item"><a href="#" class="page-link">3</a></li>
+                                <li class="page-item active"><a href="#" class="page-link">4</a></li>
+                                <li class="page-item"><a href="#" class="page-link">5</a></li>
+                                <li class="page-item"><a href="#" class="page-link">6</a></li>
+                                <li class="page-item"><a href="#" class="page-link">7</a></li>
+                                <li class="page-item"><a href="#" class="page-link">Next</a></li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-                <!-- /.card -->
+                </div>    
             </div>
         </div>
         <!-- /.container-fluid -->
     </div>
 </section>
-<script>
-    $(function () {
-        $('#example2').DataTable({
-            "paging": true,
-            "lengthChange": false,
-            "searching": false,
-            "ordering": true,
-            "info": true,
-            "autoWidth": false,
-            "responsive": true,
-        });
-    });
-</script>

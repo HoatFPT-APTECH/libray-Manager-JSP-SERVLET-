@@ -66,7 +66,7 @@ public class HistoryBorrowRequest extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Map<String,String> constraint= new HashMap<String,String>();
+      ArrayList<String> constraint= new ArrayList<>();
      
        
        ArrayList<BorrowTracking> list = new ArrayList<BorrowTracking>();

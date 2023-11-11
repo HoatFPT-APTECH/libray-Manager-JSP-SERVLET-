@@ -1,9 +1,16 @@
 package controller;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,144 +20,132 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
+import model.Author;
 import model.Book;
 import model.Category;
+import model.Publisher;
+import service.AuthorBO;
 import service.BookBO;
 import service.CategoryBO;
+import service.PublisherBO;
 
-
-
-/**
- * Servlet implementation class EditCategory
- */
+@WebServlet(name = "EditBook", urlPatterns = {"/EditBook"})
 @MultipartConfig
-@WebServlet("/EditBook")
 public class EditBook extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-	private CategoryBO categoryBO = new CategoryBO();
-	private BookBO bookBO = new BookBO();
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
-	public EditBook() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+    private BookBO bookService = new BookBO();
+        private CategoryBO serviceCategory= new CategoryBO();
+    private PublisherBO servicePublisher= new PublisherBO();
+    private AuthorBO serviceAuthorBO= new AuthorBO();
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		
-			String id = (String) request.getParameter("id");
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            int id = Integer.parseInt(request.getParameter("id"));
+            
+            
+             ArrayList<Publisher> listPublisher= new ArrayList<Publisher>();
+            ArrayList<Category> listCategory= new ArrayList<Category>();
+            ArrayList<Author> listAuthor= new ArrayList<Author>();
+            listPublisher= this.servicePublisher.listPublisher();
+            listAuthor= this.serviceAuthorBO.listAuthor();
+            listCategory= this.serviceCategory.listCategory();
+            request.setAttribute("listCategory", listCategory);
+            request.setAttribute("listAuthor", listAuthor);
+            request.setAttribute("listPublisher", listPublisher);
+            
+            
+            Book book = this.bookService.findBook(id);
+            request.setAttribute("book", book);
+            request.setAttribute("page", "edit_book.jsp");
+            request.getRequestDispatcher("./index.jsp").forward(request, response);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(EditBook.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(EditBook.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+protected void doPost(HttpServletRequest request, HttpServletResponse response)
+        throws ServletException, IOException {
+    try {
+        request.setCharacterEncoding("UTF-8");
+        int id = Integer.valueOf(request.getParameter("id"));
+        String name = request.getParameter("name");
+        
+        // Kiểm tra xem có file được gửi hay không
+        Part filePart = request.getPart("image");
+        String fileName = null;
+        System.out.println("filePartA:"+filePart);
+        if (filePart != null && filePart.getContentType() != null && filePart.getSize()>0) {
+            // Nếu có file được gửi, gọi hàm uploadFile để lấy đường dẫn file đã upload
+            fileName = this.uploadFile(filePart);
+        } else {
+            // Nếu không có file được gửi, lấy tên file từ tham số request
+            fileName = request.getParameter("fileName");
+        }
 
-			Category category = null;
+        int amount = Integer.parseInt(request.getParameter("amount"));
+        int category_id= Integer.parseInt(request.getParameter("category_id"));
+        int authorId = Integer.valueOf(request.getParameter("author_id"));
+        double price = Double.parseDouble(request.getParameter("price"));
+        int numberOfPages = Integer.parseInt(request.getParameter("number_of_pages"));
+        int publisherId = Integer.parseInt(request.getParameter("publisher_id"));
+        Date publicationYear = Date.valueOf(request.getParameter("publication_year"));
 
-			String errorString = null;
-			Book book = new Book();
-			ArrayList<Category> list = null;
-			try {
-				book = bookBO.findBook(Integer.parseInt(id));
-				list = categoryBO.listCategory();
+        Book model = new Book();
+        model.setId(id);
+        model.setName(name);
+        model.setCategory_id(category_id);
+        model.setImage(fileName);
+        model.setAmount(amount);
+        model.setPrice(price);
+        model.setNumberOfPages(numberOfPages);
+        model.setPublisherId(publisherId);
+        model.setPublicationYear(publicationYear);
+        model.setAuthor_id(authorId);
 
-			} catch (SQLException e) {
-				e.printStackTrace();
-				errorString = e.getMessage();
-			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			if (request.getAttribute("errorString") != null) {
-				errorString = (String) request.getAttribute("errorString");
-			}
-			request.setAttribute("book", book);
-			request.setAttribute("categoryList", list);
-                        request.setAttribute("page", "edit_book.jsp");
-			RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/index.jsp");
-			dispatcher.forward(request, response);
-		
-	}
+        // Set other properties accordingly
+        int rs = this.bookService.updateBook(model);
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		String id = request.getParameter("id");
-		String name = request.getParameter("name");
-		String category_id = request.getParameter("category");
-		String count = request.getParameter("count");
-		Part file = request.getPart("fileImage");
-		String fileName = request.getParameter("image_str");
-		if (!getFilename(file).equals("")) {
-			String savePath = getServletContext().getRealPath("/") + "Resources\\img\\products";
-			File fileSaveDir = new File(savePath);
-			if (!fileSaveDir.exists()) {
-				fileSaveDir.mkdir();
-			}
-			fileName = extractfilename(file);
-			file.write(savePath + File.separator + fileName);
-		}
-//		String filePath = savePath + File.separator + fileName;
+        if (rs > 0) {
+            response.sendRedirect(request.getContextPath() + "/ManagerBook");
+        } else {
+            response.sendRedirect(request.getContextPath() + "/AddBook");
+        }
+    } catch (ClassNotFoundException ex) {
+        Logger.getLogger(EditBook.class.getName()).log(Level.SEVERE, null, ex);
+    } catch (SQLException ex) {
+        Logger.getLogger(EditBook.class.getName()).log(Level.SEVERE, null, ex);
+    }
+}
 
-		Category category = new Category();
-		try {
-			category = categoryBO.findCategory(category_id);
-		} catch (ClassNotFoundException | SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		Book book = new Book();
-		book.setId(Integer.parseInt(id));
-		book.setName(name);
-		book.setCategory(category);
-		book.setAmount(count);
-		book.setImage(fileName);
-		int result = 0;
-		String errorString = null;
-		try {
-			result = bookBO.updateBook(book);
-		} catch (ClassNotFoundException | SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			errorString = e.getMessage();
-		}
-		if (result == 0 && errorString == null) {
-			errorString = "Chỉnh sửa thất bại";
-		}
-		if (result == 1)
-			errorString = "Chỉnh sửa thành công";
-		// Lưu thông tin vào request attribute trước khi forward sang views.
-		request.setAttribute("errorString", errorString);
 
-		doGet(request, response);
-
-	}
-
-	private String extractfilename(Part file) {
-		String cd = file.getHeader("content-disposition");
-		String[] items = cd.split(";");
-		for (String string : items) {
-			if (string.trim().startsWith("filename")) {
-				return string.substring(string.indexOf("=") + 2, string.length() - 1);
-			}
-		}
-		return "";
-	}
-
-	private static String getFilename(Part part) {
-		for (String cd : part.getHeader("content-disposition").split(";")) {
-			if (cd.trim().startsWith("filename")) {
-				return cd.substring(cd.indexOf('=') + 1).trim().replace("\"", "");
-			}
-		}
-		return "";
-	}
-
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }
+    private String uploadFile(Part filePart) throws FileNotFoundException, IOException{
+          String uploadPath= (getServletContext().getRealPath("")+"\\Resources\\img\\products\\").replace("\\build","");
+        String fileName= extractfilename(filePart);
+        
+        InputStream fileContent= filePart.getInputStream();
+        OutputStream os= new FileOutputStream(uploadPath+fileName);
+        int read;
+        byte[] bytes= new byte[1024];
+        while((read= fileContent.read(bytes))!=-1){
+            os.write(bytes,0,read);
+        }
+        os.close();
+        return fileName;
+    }
+    private String extractfilename(Part file) {
+        String cd = file.getHeader("content-disposition");
+        String[] items = cd.split(";");
+        for (String string : items) {
+            if (string.trim().startsWith("filename")) {
+                return string.substring(string.indexOf("=") + 2, string.length() - 1);
+            }
+        }
+        return "";
+    }
 }

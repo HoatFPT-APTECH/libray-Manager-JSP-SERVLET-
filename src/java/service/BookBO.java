@@ -31,8 +31,11 @@ public class BookBO {
 		return result;
 	}
 
-	public ArrayList<Book> listBook() throws ClassNotFoundException, SQLException {
+	public ArrayList<Book> getAllBooks() throws ClassNotFoundException, SQLException {
 		return BookDAO.getAllBook();
+	}
+        public ArrayList<Book> getAllBooks(ArrayList<String> constraint) throws ClassNotFoundException, SQLException {
+		return BookDAO.getAllBook(constraint);
 	}
 	public ArrayList<Book> searchBook(String name_search) throws ClassNotFoundException, SQLException {
 		return BookDAO.getSearchBook(name_search);

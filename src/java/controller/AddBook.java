@@ -12,8 +12,11 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -24,10 +27,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import static jdk.nashorn.internal.objects.NativeError.getFileName;
+import model.Author;
 import model.Book;
 import model.Category;
+import model.Publisher;
+import service.AuthorBO;
 import service.BookBO;
 import service.CategoryBO;
+import service.PublisherBO;
 
 /**
  * Servlet implementation class AddBook
@@ -36,87 +43,99 @@ import service.CategoryBO;
 @WebServlet("/AddBook")
 public class AddBook extends HttpServlet {
 
-    private static final long serialVersionUID = 1L;
-    private CategoryBO categoryBO = new CategoryBO();
-    private BookBO bookBO = new BookBO();
+    private BookBO bookService = new BookBO();
+        private CategoryBO serviceCategory= new CategoryBO();
+    private PublisherBO servicePublisher= new PublisherBO();
+    private AuthorBO serviceAuthorBO= new AuthorBO();
 
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public AddBook() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-    /**
-     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-     * response)
-     */
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        String errorString = null;
-        ArrayList<Category> list = null;
-
         try {
-            list = categoryBO.listCategory();
-        } catch (Exception e) {
-            e.printStackTrace();
-            errorString = e.getMessage();
-        }
-        if (request.getAttribute("errorString") != null) {
-            errorString = (String) request.getAttribute("errorString");
-        }
-        // Lưu thông tin vào request attribute trước khi forward sang views.
-        request.setAttribute("errorString", errorString);
-        request.setAttribute("categoryList", list);
-        request.getSession().setAttribute("Check", "AddBook");
-        request.setAttribute("page", "add_book.jsp");
-        RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/index.jsp");
-        dispatcher.forward(request, response);
-
-    }
-
-    /**
-     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-     * response)
-     */
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        // TODO Auto-generated method stub
-        request.setCharacterEncoding("UTF-8");
-        String name = request.getParameter("name");
-        String category_id = request.getParameter("category");
-        String count = request.getParameter("count");
-        Part filePart = request.getPart("fileImage");
-        // gọi hàm upload file và lấy đường dẫn file đã upload
-        String fileName= this.uploadFile(filePart);
-    
+           
+            
+            
+             ArrayList<Publisher> listPublisher= new ArrayList<Publisher>();
+            ArrayList<Category> listCategory= new ArrayList<Category>();
+            ArrayList<Author> listAuthor= new ArrayList<Author>();
+            listPublisher= this.servicePublisher.listPublisher();
+            listAuthor= this.serviceAuthorBO.listAuthor();
+            listCategory= this.serviceCategory.listCategory();
+            request.setAttribute("listCategory", listCategory);
+            request.setAttribute("listAuthor", listAuthor);
+            request.setAttribute("listPublisher", listPublisher);
+            
+            
+     
+            request.setAttribute("page", "add_book.jsp");
+            request.getRequestDispatcher("./index.jsp").forward(request, response);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(EditBook.class.getName()).log(Level.SEVERE, null, ex);
        
-        Book book = new Book();
-        book.setName(name);
-        Category category = new Category();
-        try {
-            category = categoryBO.findCategory(category_id);
-        } catch (ClassNotFoundException | SQLException e1) {
-            // TODO Auto-generated catch block
-            e1.printStackTrace();
+        } catch (SQLException ex) {
+            Logger.getLogger(EditBook.class.getName()).log(Level.SEVERE, null, ex);
         }
-        book.setCategory(category);
-        
-        book.setAmount(count);
-        book.setImage(fileName);
-        try {
-            int result = bookBO.insertBook(book);
-        } catch (ClassNotFoundException | SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        request.setAttribute("errorString", "Thêm sách thành công");
-        response.sendRedirect(request.getContextPath()+"//ManagerBook");
     }
+protected void doPost(HttpServletRequest request, HttpServletResponse response)
+        throws ServletException, IOException {
+    try {
+        request.setCharacterEncoding("UTF-8");
+     
+        String name = request.getParameter("name");
+        
+        // Kiểm tra xem có file được gửi hay không
+        Part filePart = request.getPart("image");
+        String fileName = null;
+        System.out.println("filePartA:"+filePart);
+        if (filePart != null && filePart.getContentType() != null && filePart.getSize()>0) {
+            // Nếu có file được gửi, gọi hàm uploadFile để lấy đường dẫn file đã upload
+            fileName = this.uploadFile(filePart);
+        } else {
+            // Nếu không có file được gửi, lấy tên file từ tham số request
+            fileName = request.getParameter("fileName");
+        }
 
+        int amount = Integer.parseInt(request.getParameter("amount"));
+        int category_id= Integer.parseInt(request.getParameter("category_id"));
+        int authorId = Integer.valueOf(request.getParameter("author_id"));
+        double price = Double.parseDouble(request.getParameter("price"));
+        int numberOfPages = Integer.parseInt(request.getParameter("number_of_pages"));
+        int publisherId = Integer.parseInt(request.getParameter("publisher_id"));
+        Date publicationYear = Date.valueOf(request.getParameter("publication_year"));
+
+        Book model = new Book();
  
+        model.setName(name);
+        model.setCategory_id(category_id);
+        model.setImage(fileName);
+        model.setAmount(amount);
+        model.setPrice(price);
+        model.setNumberOfPages(numberOfPages);
+        model.setPublisherId(publisherId);
+        model.setPublicationYear(publicationYear);
+        model.setAuthor_id(authorId);
+
+        // Set other properties accordingly
+        int rs = this.bookService.insertBook(model);
+
+        if (rs > 0) {
+            request.setAttribute("errorString", "Thêm sách thành công ");
+         
+            response.sendRedirect(request.getContextPath() + "/ManagerBook");
+        } else {
+            response.sendRedirect(request.getContextPath() + "/AddBook");
+        }
+    } catch (ClassNotFoundException ex) {
+        Logger.getLogger(EditBook.class.getName()).log(Level.SEVERE, null, ex);
+    } catch (SQLException ex) {
+        Logger.getLogger(EditBook.class.getName()).log(Level.SEVERE, null, ex);
+    }
+}
+
+
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }
     private String uploadFile(Part filePart) throws FileNotFoundException, IOException{
           String uploadPath= (getServletContext().getRealPath("")+"\\Resources\\img\\products\\").replace("\\build","");
         String fileName= extractfilename(filePart);
@@ -141,5 +160,4 @@ public class AddBook extends HttpServlet {
         }
         return "";
     }
-
 }

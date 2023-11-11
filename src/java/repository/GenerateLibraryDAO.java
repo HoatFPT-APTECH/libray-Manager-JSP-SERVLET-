@@ -7,6 +7,7 @@ package repository;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Map;
 
 
@@ -40,22 +41,14 @@ public  boolean isDate(String str, String dateFormat) {
         return false;
     }
 }
-  public String generateSqlWithConstraint(Map<String,String> constraint, String rootSql){
+  public String generateSqlWithConstraint(ArrayList<String> constraint, String rootSql){
       System.out.println(rootSql);
         StringBuilder strReturn= new StringBuilder(rootSql);
         
-         for(Map.Entry<String,String> entry : constraint.entrySet()){
-            String key= entry.getKey();
-            String value= entry.getValue();
-            if(this.isInteger(value)){
-                strReturn.append(" And ").append(key).append("=").append(value);
-            }else if(this.isDouble(value)){
-                strReturn.append(" And ").append(key).append("=").append(value);
-            }else if(this.isDate(value, "yyyy-MM-dd")){
-                    strReturn.append(" And ").append(key).append("=").append("'"+value+"'");
-            }else{
-                strReturn.append(" And ").append(key).append("=").append("'%"+value+"%'");
-            }
+         for(String entry : constraint){
+            
+             strReturn.append(" And ").append(entry);
+          
              System.out.println(strReturn.toString());
         }
         return strReturn.toString() ;

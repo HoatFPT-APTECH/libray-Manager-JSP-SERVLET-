@@ -74,14 +74,13 @@ public class EditBorrowTracking extends HttpServlet {
               
               Date return_date = Date.valueOf(request.getParameter("return_date"));
               long overDay= this.calculateDaysBetweenDates(due_date.toString(), return_date.toString());
-              double fineAmount= overDay*0.1* book.price;
+            double fineAmount= overDay*0.1* book.price;
               if(return_status==3)fineAmount=book.price;
-              
               
               BorrowTracking bt= new BorrowTracking();
               bt.id= Integer.parseInt(request.getParameter("id"));
               bt.request_id= request_id;
-              bt.fine_amound=fineAmount;
+        bt.fine_amound=fineAmount>0?fineAmount:0;
               bt.return_date= return_date;
               bt.return_status= return_status;
              boolean success=  this.serviceBorrowTracking.Update(bt.id,bt);

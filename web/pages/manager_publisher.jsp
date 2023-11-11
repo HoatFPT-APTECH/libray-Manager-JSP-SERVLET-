@@ -106,40 +106,7 @@
                             </tbody>
                         </table>
 
-                        <div class="card-header">
-                            <div class="card-tools">
-                                <input type="button" value="Xóa tất cả" class="btn btn-danger"
-                                       data-toggle="modal" data-target="#staticBackdrop-DeleteAll">
-                            </div>
-                            <div class="modal fade" id="staticBackdrop-DeleteAll"
-                                 data-backdrop="static" data-keyboard="false" tabindex="-1"
-                                 aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="staticBackdropLabel1">Chú ý</h5>
-                                            <button type="button" class="close" data-dismiss="modal"
-                                                    aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <span class="text-danger"> Bạn có muốn chắc xóa tất
-                                                cả nhà xuất bản</span>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-warning  btn-secondary"
-                                                    data-dismiss="modal">Hủy</button>
-
-                                            <button type="submit" class="btn btn-danger"
-                                                    onclick="location.href = '${pageContext.request.contextPath}/DeletePublisher'">Xóa</button>
-
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                      
 
                     </div>
 
