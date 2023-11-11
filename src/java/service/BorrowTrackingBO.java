@@ -27,7 +27,7 @@ public class BorrowTrackingBO implements IService<BorrowTracking> {
         }
         return null;
     }
-    public ArrayList<BorrowTracking> GetAllWithConstraint(Map<String,String> constraint) throws ClassNotFoundException, SQLException{
+    public ArrayList<BorrowTracking> GetAllWithConstraint(ArrayList<String> constraint) throws ClassNotFoundException, SQLException{
         return this.repository.getAllBorrowTrackingByConstraint(constraint);
     }
 

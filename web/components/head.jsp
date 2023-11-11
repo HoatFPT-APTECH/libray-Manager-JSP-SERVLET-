@@ -52,6 +52,9 @@
               href="<%= request.getContextPath() %>/Resources/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
         <!-- Theme style -->
         <link rel="stylesheet" href="<%= request.getContextPath() %>/Resources/css/adminlte.min.css">
+        
+         <!-- Import link src của Flaticon -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css">
         <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="<%= request.getContextPath() %>/Resources/css/custom.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">

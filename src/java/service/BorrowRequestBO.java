@@ -25,7 +25,7 @@ public class BorrowRequestBO implements IService<BorrowRequest> {
         } 
         return null;
     }
-    public ArrayList<BorrowRequest> getHistoryBorrowRequestsByConstraint(Map<String,String> constraint ) throws SQLException, ClassNotFoundException{
+    public ArrayList<BorrowRequest> getHistoryBorrowRequestsByConstraint(ArrayList<String> constraint ) throws SQLException, ClassNotFoundException{
 
         return this.repository.getHistoryBorrowRequestsByConstraint(constraint);
         

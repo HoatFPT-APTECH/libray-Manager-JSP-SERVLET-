@@ -40,31 +40,26 @@
                             <li class="nav-item  "><a
                                     href="${pageContext.request.contextPath}/UserManual"
                                     class="nav-link ">
-                                        <i class="nav-icon fas fa-book"></i>
-                                        <p>Cửa sổ làm việc</p>
+                                        
+                                        <p> <i class="fa fa-star" aria-hidden="true"></i>   Cửa sổ làm việc</p>
                                     </a></li>
                                 <li
                                     class="nav-item has-treeview "><a
                                         href="#"
                                         class="nav-link ">
-                                        <i class="nav-icon fas fa-book"></i>
+                                       
                                         <p>
-                                            Quản lý sách<i class="right fas fa-angle-left"></i>
+                                           <i class="fa fa-book" aria-hidden="true"></i> Quản lý tài nguyên<i class="right fas fa-angle-left"></i>
                                         </p>
                                     </a>
                                     <ul class="nav nav-treeview">
                                         <li class="nav-item"><a
-                                                href="${pageContext.request.contextPath}/ManageBook"
+                                                href="${pageContext.request.contextPath}/ManagerBook"
                                             class="nav-link ">
                                                 <i class="far fa-circle nav-icon"></i>
-                                                <p>Danh sách</p>
+                                                <p>Sách</p>
                                             </a></li>
-                                        <li class="nav-item"><a
-                                                href="${pageContext.request.contextPath}/AddBook"
-                                            class="nav-link ">
-                                                <i class="far fa-circle nav-icon"></i>
-                                                <p>Thêm sách</p>
-                                            </a></li>
+                                        
                                         <li class="nav-item"><a
                                                 href="${pageContext.request.contextPath}/ManageCategory"
                                             class="nav-link">
@@ -89,9 +84,9 @@
                                     class=" nav-item has-treeview "><a
                                         href="#"
                                         class="nav-link ">
-                                        <i class="nav-icon fas fa-book"></i>
+                                      
                                         <p>
-                                            Quản lý mượn sách<i class="right fas fa-angle-left"></i>
+                                           <i class="fa fa-bell" aria-hidden="true"></i>  Quản lý mượn sách<i class="right fas fa-angle-left"></i>
                                         </p>
                                     </a>
                                     <ul class="nav nav-treeview">
@@ -105,7 +100,7 @@
                                                 href="${pageContext.request.contextPath}/ManageBorrowRequest"
                                             class="nav-link">
                                                 <i class="far fa-circle nav-icon"></i>
-                                                <p>Danh sách đang mượn sách</p>
+                                                <p>Đang mượn sách</p>
                                             </a></li>
 
                                         <li class="nav-item"><a
@@ -115,17 +110,32 @@
                                                 <p>Lịch sử mượn sách</p>
                                             </a></li>
                                     </ul></li>
-                                <%
-                                    if (request.getSession().getAttribute("User") != null) {
-                                %>
+                                    
+                                     <li
+                                    class=" nav-item has-treeview "><a
+                                        href="#"
+                                        class="nav-link ">
+                                           
+                                        <p>
+                                      <i class="fa fa-calculator mr-2" ></i>Báo cáo thống kê <i class="right fas fa-angle-left"></i>
+                                        </p>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item"><a
+                                                href="${pageContext.request.contextPath}/SituationServed"
+                                            class="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Tình hình phục vụ</p>
+                                            </a></li>
+                                      
+                                    </ul></li>
+                             
                             <li class="nav-item"><a
                                     href="${pageContext.request.contextPath}/Logout" class="nav-link">
                                     <i class="fas fa-circle nav-icon"></i>
                                     <p>Đăng xuất</p>
                                 </a></li>
-                                <%
-                                    }
-                                %>
+                           
 
                         </ul>
                     </nav>

@@ -7,6 +7,7 @@ package service;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Reader;
@@ -29,9 +30,20 @@ public class ReaderBO implements IService<Reader> {
         };
         return null;
     }
-    public ArrayList<Reader> findReaderByIndentityCard(String IdentityCard){
+      public ArrayList<Reader> findReaderByIndentityCard(String IdentityCard){
         return this.repository.findReaderByIdentityCard(IdentityCard);
     }
+     public ArrayList<Reader> GetAll(ArrayList<String> constraint) {
+        try {
+            return this.repository.getAllReaders(constraint);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ReaderBO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ReaderBO.class.getName()).log(Level.SEVERE, null, ex);
+        };
+        return null;
+    }
+  
     @Override
     public Reader GetDetail(int id) {
         try {

@@ -8,6 +8,8 @@ package controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -34,6 +36,9 @@ public class ManagerReader extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String errorString = null;
         ArrayList<Reader> list = null;
+             request.setAttribute("identity_card", "");
+        request.setAttribute("role_id", 0);
+        request.setAttribute("start_day",0);
         try {
             list = readerService.GetAll();
         } catch (Exception e) {
@@ -52,19 +57,31 @@ public class ManagerReader extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-       
+        ArrayList<String> constraint= new ArrayList<>();
         String errorString="Kết quả tìm kiếm ";
+        int role= Integer.parseInt(request.getParameter("role_id"));
+        int time= Integer.parseInt(request.getParameter("start_day"));
         String identity_card= request.getParameter("identity_card");
+        if(identity_card.trim().length()>0) constraint.add("identity_card like '%"+ identity_card+"%'");
+    
+        if(role!=0)constraint.add ("role_id="+String.valueOf(role));
+            if(time!=0){
+            if(time==1) constraint.add("true order by start_day asc");
+            else constraint.add("true order by start_day desc");
+        }
         ArrayList<Reader> list = new ArrayList<>();
         try {
-            list = readerService.findReaderByIndentityCard(identity_card);
+            list = readerService.GetAll(constraint);
         } catch (Exception e) {
             e.printStackTrace();
             errorString = e.getMessage();
         }
-           request.setAttribute("errorString", errorString);
+           request.setAttribute("errorString", "Kết quả tìm kiếm /lọc .");
     
         request.setAttribute("readerList", list);
+        request.setAttribute("identity_card", identity_card);
+        request.setAttribute("role_id", role);
+        request.setAttribute("start_day", time);
         request.getSession().setAttribute("Check", "ManageReader");
         request.setAttribute("page", "manager_reader.jsp");
         RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/index.jsp");

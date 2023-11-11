@@ -53,27 +53,12 @@
                                 </div>
                                 <div class="col-sm-9">
                                     <form action="<%= request.getContextPath() %>/ManageBorrowRequest" method="post">
-                                      <button type="button" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                                      <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
                                     <div class="filter-group">
                                         <label>Tìm kiếm</label>
-                                        <input type="text" name="search" class="form-control" placeholder="Tìm kiểm theo CMT">
+                                        <input name="identity_card" value="<%= request.getAttribute("identity_card") %>" type="text" name="identity_card" class="form-control" placeholder="Tìm kiểm theo CMT">
                                     </div>
-                                    <div class="filter-group">
-                                        <label>Hạn trả</label>
-                                        <select class="form-control">
-                                            <option>Mặc đinh</option>
-                                            <option>Tăng dần</option>
-                                           <option>Giảm dần</option>						
-                                        </select>
-                                    </div>
-                                    <div class="filter-group">
-                                        <label>Sắp xếp theo tên</label>
-                                        <select class="form-control">
-                                                    <option>Mặc định</option>
-                                            <option>Tăng dần - ABC</option>
-                                           <option>Giảm dần - ABC</option>	
-                                        </select>
-                                    </div>
+                                   
                                     <span class="filter-icon"><i class="fa fa-filter"></i></span>  
                                     </form>
                                     
@@ -104,14 +89,7 @@
                                             <p> CMT: <%=e.reader.identity_card %> </p>
                                         </div>
                                     </td>
-                                    <td style="text-align: center;"><img
-                                            src="Resources/img/products/<%=e.book.getImage()%>" width="35"
-                                            height="50">
-                            <figcaption>
-                                <a href="Resources/img/products/<%=e.book.getImage() %>"
-                                   style="font-size: 14px;" target="_blank">Xem chi tiết</a>
-                            </figcaption>
-                            </td>
+                                       <td><img src="Resources/img/products/<%= e.book.getImage()%>" alt="Book Image" width="50"></td>
                                     <td> 
                                         <div>
                                             <p><%= e.book.getName() %> </p>

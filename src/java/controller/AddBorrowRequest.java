@@ -105,8 +105,15 @@ public class AddBorrowRequest extends HttpServlet {
             request.setAttribute("errorString", "Lỗi! Không tìm thấy Sách hoặc độc giả.");
            request.setAttribute("page", "add_borrow_request.jsp");
             request.getRequestDispatcher("./index.jsp").forward(request, response);
-        }else{
+        }
+        else if(book.getAmount()-1<0){
+              request.setAttribute("errorString", "Sách này trong thư viện không còn .");
+           request.setAttribute("page", "add_borrow_request.jsp");
+            request.getRequestDispatcher("./index.jsp").forward(request, response);
+        }
+        else{
             BorrowRequest model= new BorrowRequest(-1, reader.id, book_id, 0, due_date);
+            book.setAmount(book.getAmount()-1);
             boolean rs= this.serviceBorrowRequest.Add(model);
             if(rs){
                           response.sendRedirect(request.getContextPath()+"/ManageBorrowRequest");  

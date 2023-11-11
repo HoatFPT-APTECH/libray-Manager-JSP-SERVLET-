@@ -99,11 +99,14 @@ public class BorrowTrackingDAO extends GenerateLibraryDAO{
         }
         return list;
     }
-    public ArrayList<BorrowTracking> getAllBorrowTrackingByConstraint(Map<String,String> constraint) throws ClassNotFoundException, SQLException {
+    public ArrayList<BorrowTracking> getAllBorrowTrackingByConstraint(ArrayList<String> constraint) throws ClassNotFoundException, SQLException {
         if (conn == null)
             conn = ConnectDatabase.getMySQLConnection();
         ArrayList<BorrowTracking> list = new ArrayList<BorrowTracking>();
-        String sql = "SELECT * FROM borrow_tracking where true and ";
+        String sql = "SELECT bt.* FROM borrow_tracking bt "
+                + "left join borrow_request br on br.id=bt.request_id "
+                + "left join reader r on br.reader_id=r.id "
+                + " where true ";
         sql= generateSqlWithConstraint(constraint, sql);
         PreparedStatement pstm = (PreparedStatement) conn.prepareStatement(sql);
         ResultSet rs = pstm.executeQuery();

@@ -23,7 +23,7 @@
                                     <h2>Quản lý <b>Độc giả</b></h2>
                                 </div>
                                 <div class="col-sm-8">						
-                                    <a href="<%= request.getContextPath() %>/AddReader" class="btn btn-success">      <i class="fa fa-plus" aria-hidden="true"></i> <span>Thêm mới 2</span></a>
+                                    <a href="<%= request.getContextPath() %>/AddReader" class="btn btn-success">      <i class="fa fa-plus" aria-hidden="true"></i> <span>Thêm mới</span></a>
                         
                                 </div>
                             </div>
@@ -42,35 +42,31 @@
                                         <span>entries</span>
                                     </div>
                                 </div>
-                                <div class="col-sm-9">
-                                    <button type="button" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                                <form action="<%=request.getContextPath() %>/ManagerReader" method="post" class="col-sm-9">
+                                    <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
                                     <div class="filter-group">
-                                        <label>Name</label>
-                                        <input type="text" class="form-control">
+                                        <label>Tìm kiếm</label>
+                                        <input type="text" name="identity_card" value="<%= request.getAttribute("identity_card") %>" placeholder="Nhập CMT" class="form-control">
                                     </div>
                                     <div class="filter-group">
-                                        <label>Location</label>
-                                        <select class="form-control">
-                                            <option>All</option>
-                                            <option>Berlin</option>
-                                            <option>London</option>
-                                            <option>Madrid</option>
-                                            <option>New York</option>
-                                            <option>Paris</option>								
+                                        <label>Loại</label>
+                                        <select class="form-control" name="role_id">
+                                            <option value="0" <%= (Integer)request.getAttribute("role_id")==0?"selected":"" %> >Tất cả</option>
+                                            <option value="1" <%= (Integer)request.getAttribute("role_id")==1?"selected":"" %>  >Học sinh / Sinh viên</option>
+                                      <option value="2"  <%= (Integer)request.getAttribute("role_id")==2?"selected":"" %>  >Giáo viên</option>
                                         </select>
                                     </div>
                                     <div class="filter-group">
-                                        <label>Status</label>
-                                        <select class="form-control">
-                                            <option>Any</option>
-                                            <option>Delivered</option>
-                                            <option>Shipped</option>
-                                            <option>Pending</option>
-                                            <option>Cancelled</option>
+                                        <label>Ngày đăng ký</label>
+                                        <select class="form-control" name="start_day">
+                                            <option value="0" <%= (Integer)request.getAttribute("start_day")==0?"selected":"" %>  >Mặc định</option>
+                                            <option value="1" <%= (Integer)request.getAttribute("start_day")==1?"selected":"" %> >Tăng dần</option>
+                                            <option value="2" <%= (Integer)request.getAttribute("start_day")==2?"selected":"" %> >Giảm dần</option>
+                                      
                                         </select>
                                     </div>
                                     <span class="filter-icon"><i class="fa fa-filter"></i></span>
-                                </div>
+                                </form>
                             </div>
                         </div>
                         <table class="table table-striped table-hover">
@@ -80,14 +76,14 @@
                                     <th>Ảnh</th>
                                     <th>Tên người đọc</th>
 
-                                    <th>Địa chỉ</th>
+                        
                                     <th>CMT</th>
-                                    <th>Ngày sinh</th>
+                            
+                                    <th>Loại</th>
                                     <th>Ngày đăng ký</th>
-                                    <th>Hạn sử dụng</th>
-                                    <th>Tiền cọc</th>
-                                    <th>Số sách đã mượn</th>
-                                    <th>Thời gian mượn</th>
+                               
+                               
+                                  
                                     <th>Hành động</th>
                                 </tr>
                             </thead>
@@ -111,15 +107,16 @@
                                         </div>
                                     </td>
 
-                                    <td><%= reader.reader_address%></td>
+                                  
                                     <td><%= reader.identity_card%></td>
-                                    <td><%= reader.date_of_birth%></td>
+                                    <td><%= reader.role_id==1?"Học sinh/Sinh viên":"Giáo viên"%> </td>
                                     <td><%= reader.start_day%></td>
-                                    <td><%= reader.end_day == null ? "" : reader.end_day%></td>
-                                    <td><%= reader.deposit%></td>
-                                    <td><%= reader.books_borrowed%></td>
-                                    <td><%= reader.borrowed_time%></td>
+                                
+                            
+                                   
                                     <td class="d-flex border-0">
+                                         <button type="button" class="btn btn-info " onclick="update(this)"
+                                                value="<%= reader.id%>" href="<%= request.getContextPath()%>/GetDetailReader">Chi tiết</button>
                                         <button type="button" class="btn btn-primary" onclick="update(this)"
                                                 value="<%= reader.id%>" href="<%= request.getContextPath()%>/EditReader">Sửa</button>
                                         <br>

@@ -79,7 +79,7 @@ public class AddBorrowTracking extends HttpServlet {
               
               BorrowTracking bt= new BorrowTracking();
               bt.request_id= request_id;
-              bt.fine_amound=fineAmount;
+              bt.fine_amound=fineAmount>0?fineAmount:0;
               bt.return_date= return_date;
               bt.return_status= return_status;
              boolean success=  this.serviceBorrowTracking.Add(bt);

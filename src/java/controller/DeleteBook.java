@@ -42,7 +42,7 @@ public class DeleteBook extends HttpServlet {
                 } catch (Exception e) {
                     e.printStackTrace();
             }
-		response.sendRedirect(request.getContextPath()+"/ManageBook");
+		response.sendRedirect(request.getContextPath()+"/ManagerBook");
 	}
 
 	/**

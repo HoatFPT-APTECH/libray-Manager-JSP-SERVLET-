@@ -8,12 +8,24 @@ package controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Author;
+import model.Category;
+import model.Publisher;
 import model.Reader;
+import repository.AuthorDAO;
+import repository.PublisherDAO;
+import service.AuthorBO;
+import service.CategoryBO;
+import service.PublisherBO;
 import service.ReaderBO;
 
 /**
@@ -23,6 +35,7 @@ import service.ReaderBO;
 @WebServlet(name = "EditReader", urlPatterns = {"/EditReader"})
 public class EditReader extends HttpServlet {
     private ReaderBO serviceReader= new ReaderBO();
+ 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -61,11 +74,14 @@ public class EditReader extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int id= Integer.parseInt(request.getParameter("id"));
-        Reader reader= this.serviceReader.GetDetail(id);
-        request.setAttribute("reader", reader);
-       request.setAttribute("page", "edit_reader.jsp");
-        request.getRequestDispatcher("./index.jsp").forward(request, response);
+        
+            int id= Integer.parseInt(request.getParameter("id"));
+            Reader reader= this.serviceReader.GetDetail(id);
+           
+            request.setAttribute("reader", reader);
+            request.setAttribute("page", "edit_reader.jsp");
+            request.getRequestDispatcher("./index.jsp").forward(request, response);
+       
     }
 
     /**

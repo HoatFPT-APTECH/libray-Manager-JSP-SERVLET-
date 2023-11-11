@@ -28,6 +28,7 @@ public class ManagerBorrowTracking extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String errorString = null;
+        
         ArrayList<BorrowTracking> list = null;
         try {
             list = borrowTrackingService.GetAll();
@@ -45,6 +46,7 @@ public class ManagerBorrowTracking extends HttpServlet {
         }
         request.setAttribute("errorString", errorString);
         request.setAttribute("borrowTrackingList", list);
+        request.setAttribute("identity_card", "");
         request.getSession().setAttribute("Check", "ManageBorrowTracking");
         request.setAttribute("page", "manager_borrow_tracking.jsp");
         RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/index.jsp");
@@ -52,6 +54,28 @@ public class ManagerBorrowTracking extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doGet(request, response);
+              ArrayList<BorrowTracking> list = new ArrayList<>();
+        ArrayList<String> constraint= new ArrayList<String> ();
+        String identity_card= request.getParameter("identity_card");
+        System.out.println("identity "+identity_card);
+        if(identity_card.trim().length()>0)  constraint.add("r.identity_card like '%"+identity_card+"%'");
+        try {
+            list = borrowTrackingService.GetAllWithConstraint(constraint);
+            for(BorrowTracking bt : list){
+                bt.borrow_request= this.borrowRequestService.GetDetail(bt.request_id);
+                bt.book= this.bookService.findBook(bt.borrow_request.book_id);
+                bt.reader= this.readerService.GetDetail(bt.borrow_request.reader_id);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+          
+        }
+
+        request.setAttribute("identity_card", identity_card);
+        request.setAttribute("errorString", "Kết quả tìm kiểm theo chứng minh thư");
+             request.setAttribute("page", "manager_borrow_tracking.jsp");
+               request.setAttribute("borrowTrackingList", list);
+        RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/index.jsp");
+        dispatcher.forward(request, response);
     }
 }
