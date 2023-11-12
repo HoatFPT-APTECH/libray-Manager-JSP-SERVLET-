@@ -44,19 +44,20 @@ public class BookDAO {
         ResultSet rs = pstm.executeQuery();
 
         if(rs.next()) {
-        int id_book = rs.getInt("id");
+      
         String image= rs.getString("image");
         String name = rs.getString("name");
         String category_id = rs.getString("category_id");
         int author_id = rs.getInt("author_id");
         double price = rs.getDouble("price");
-     
-        Date publication_year = rs.getDate("publication_year");
+        
+        Date publication_year = rs.getTimestamp("publication_year");
         int number_off_pages = rs.getInt("number_off_pages");
         int publisher_id = rs.getInt("publisher_id");
         int amount = rs.getInt("amount");
- 
+    
         Date create_day = rs.getDate("create_day");
+        
         int deleted = rs.getInt("deleted");
 
         // Lấy thông tin của Category, Author và các thông tin khác tương ứng từ DB
@@ -64,12 +65,13 @@ public class BookDAO {
         Author author = authorDAO.findAuthor(String.valueOf(author_id));
 
         Book book = new Book();
-        book.setId(id_book);
+        book.setId(id);
         book.setImage(image);
         book.setName(name);
         book.setCategory(category);
         book.setCategory_id(category.getId());
         book.setAuthor(author);
+        book.setAuthor_id(author_id);
         book.setPrice(price);
         book.setPublicationYear(publication_year);
         book.setNumberOfPages(number_off_pages);
@@ -77,7 +79,7 @@ public class BookDAO {
         book.setAmount(amount);
         book.setCreateDay(create_day);
         book.setDeleted(deleted);
-        book.publisher= this.publisherDAO.findPublisher(String.valueOf(book.publisherId));
+             book.publisher= this.publisherDAO.findPublisher(String.valueOf(book.publisherId));
 
         return book;
     }

@@ -16,8 +16,8 @@
 
                 <div class="small-box bg-info">
                     <div class="inner">
-                        <h3>150</h3>
-                        <p>New Orders</p>
+                        <h3>35 <sup style="font-size: 20px">Đầu sách</sup> </h3>
+                        <p>Sách có trong thư viện</p>
                     </div>
                     <div class="icon">
                         <i class="ion ion-bag"></i>
@@ -30,8 +30,8 @@
 
                 <div class="small-box bg-success">
                     <div class="inner">
-                        <h3>53<sup style="font-size: 20px">%</sup></h3>
-                        <p>Bounce Rate</p>
+                        <h3>100<sup style="font-size: 20px"> Quyển</sup></h3>
+                        <p>Sách đã cho mượn</p>
                     </div>
                     <div class="icon">
                         <i class="ion ion-stats-bars"></i>
@@ -44,8 +44,8 @@
 
                 <div class="small-box bg-warning">
                     <div class="inner">
-                        <h3>44</h3>
-                        <p>User Registrations</p>
+                  <h3>73<sup style="font-size: 20px">Quyển</sup></h3>
+                        <p>Sách đã trả lại</p>
                     </div>
                     <div class="icon">
                         <i class="ion ion-person-add"></i>
@@ -58,8 +58,8 @@
 
                 <div class="small-box bg-danger">
                     <div class="inner">
-                        <h3>65</h3>
-                        <p>Unique Visitors</p>
+                               <h3>1 023 000<sup style="font-size: 20px"> Đồng</sup></h3>
+                        <p>Tiền thu </p>
                     </div>
                     <div class="icon">
                         <i class="ion ion-pie-graph"></i>
