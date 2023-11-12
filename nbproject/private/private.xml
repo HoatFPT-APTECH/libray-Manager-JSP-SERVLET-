@@ -6,25 +6,29 @@
             <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/src/java/controller/EditBook.java</file>
             <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/web/pages/manager_category.jsp</file>
             <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/src/java/controller/EditBorrowTracking.java</file>
-            <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/src/java/service/BookBO.java</file>
-            <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/src/java/controller/AddBorrowTracking.java</file>
             <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/web/pages/manager_publisher.jsp</file>
             <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/src/java/controller/DeletePublisher.java</file>
             <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/src/java/controller/ManagerBorrowTracking.java</file>
             <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/src/java/controller/SituationServedController.java</file>
             <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/src/java/controller/ManageBook.java</file>
-            <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/src/java/controller/DeleteBook.java</file>
-            <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/src/java/repository/BookDAO.java</file>
             <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/web/pages/manager_reader.jsp</file>
             <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/src/java/repository/ReaderDAO.java</file>
             <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/web/pages/manager_author.jsp</file>
             <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/web/pages/bookStatistic.jsp</file>
             <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/src/java/controller/DeleteReader.java</file>
-            <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/src/java/model/modelExport.java</file>
             <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/src/java/controller/ManagerReader.java</file>
+            <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/src/java/controller/AddBorrowRequest.java</file>
             <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/web/pages/edit_book.jsp</file>
             <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/web/pages/manager_book.jsp</file>
+            <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/src/java/service/BookBO.java</file>
+            <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/src/java/controller/AddBorrowTracking.java</file>
+            <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/src/java/controller/DeleteBook.java</file>
+            <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/src/java/repository/BookDAO.java</file>
+            <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/src/java/model/modelExport.java</file>
+            <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/web/pages/dashboard.jsp</file>
+            <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/web/pages/add_borrow_request.jsp</file>
             <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/src/java/controller/ExportExcel.java</file>
+            <file>file:/F:/Dai_Hoc/Ky_7/Lap%20trinh%20ung%20dung%20JAVA/EProject/QuanLyThuVien/src/java/controller/AddBook.java</file>
         </group>
     </open-files>
 </project-private>

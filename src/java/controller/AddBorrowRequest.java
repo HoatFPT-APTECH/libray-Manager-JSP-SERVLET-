@@ -31,7 +31,7 @@ import service.ReaderBO;
 public class AddBorrowRequest extends HttpServlet {
     protected ReaderBO serviceReader= new ReaderBO();
     protected BorrowRequestBO serviceBorrowRequest= new BorrowRequestBO();
-    protected BookBO serviceBook= new BookBO();
+   private BookBO bookService = new BookBO();
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -95,7 +95,7 @@ public class AddBorrowRequest extends HttpServlet {
         Book book=null;
         try {
             reader=this.serviceReader.findReaderByIndentityCard(identityCard).get(0);
-            book = this.serviceBook.findBook(book_id);
+            book = this.bookService.findBook(book_id);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(AddBorrowRequest.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
@@ -112,15 +112,22 @@ public class AddBorrowRequest extends HttpServlet {
             request.getRequestDispatcher("./index.jsp").forward(request, response);
         }
         else{
-            BorrowRequest model= new BorrowRequest(-1, reader.id, book_id, 0, due_date);
-            book.setAmount(book.getAmount()-1);
-            boolean rs= this.serviceBorrowRequest.Add(model);
-            if(rs){
-                          response.sendRedirect(request.getContextPath()+"/ManageBorrowRequest");  
-            }else{
-                request.setAttribute("errorString", "Lỗi! Không thêm được yêu cầu mượn sách.");
-           request.setAttribute("page", "add_borrow_request.jsp");
-            request.getRequestDispatcher("./index.jsp").forward(request, response);
+            try {
+                BorrowRequest model= new BorrowRequest(-1, reader.id, book_id, 0, due_date);
+                book.setAmount(book.getAmount()-1);
+                this.bookService.updateBook(book);
+                boolean rs= this.serviceBorrowRequest.Add(model);
+                if(rs){
+                    response.sendRedirect(request.getContextPath()+"/ManageBorrowRequest");
+                }else{
+                    request.setAttribute("errorString", "Lỗi! Không thêm được yêu cầu mượn sách.");
+                    request.setAttribute("page", "add_borrow_request.jsp");
+                    request.getRequestDispatcher("./index.jsp").forward(request, response);
+                }
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(AddBorrowRequest.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(AddBorrowRequest.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         
